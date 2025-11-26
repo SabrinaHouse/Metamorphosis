@@ -15,10 +15,10 @@ void Chrysalis::Begin() {
 	body = Physics::world.CreateBody(&bodyDef);
 
 	b2FixtureDef fixtureDef{};
-	fixtureDef.density = 1;
+	fixtureDef.density = 5;
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(0.25, 0.5);
+	polygonShape.SetAsBox(1, 2);
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 }
@@ -44,5 +44,5 @@ void Chrysalis::Update(float deltaTime) {
 
 }
 void Chrysalis::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Chrysalis.png"], position, sf::Vector2f(facingLeft ? -10.0f : 10.0, 5.0f));
+	renderer.Draw(Resources::textures["Chrysalis.png"], position, sf::Vector2f(facingLeft ? -10.0f : 10.0, 10.0f));
 }

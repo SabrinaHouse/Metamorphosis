@@ -4,17 +4,11 @@
 #include "Game.h"
 #include "Renderer.h"
 
-Camera camera(200.0f);
-
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({ 1600, 900 }), "METAMORPHOSIS");
     sf::Clock deltaClock;
     Renderer renderer(window);
-
-    sf::CircleShape shape(10.f);
-    shape.setFillColor(sf::Color::Green);
-    shape.setPosition(camera.position);
 
     Begin(window);
     while (window.isOpen())
@@ -31,9 +25,9 @@ int main()
 
        Update(deltaTime);
 
-       window.clear();
+       window.clear(sf::Color::White);
 
-       Render(renderer);
+       Render(renderer, window);
 
        window.display();
     }
