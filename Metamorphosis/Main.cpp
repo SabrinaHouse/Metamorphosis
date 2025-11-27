@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D.h>
 #include "Camera.h"
-#include "Game.h"
+#include "Level2.h"
 #include "Renderer.h"
+#include "Game.h"
 
 int main()
 {
@@ -19,7 +20,19 @@ int main()
         {
             if (event->is<sf::Event::Closed>())
                 window.close();
+
+            if (event->is<sf::Event::KeyReleased>())
+            {
+                auto keyEvent = event->getIf<sf::Event::KeyReleased>();
+                if (keyEvent->code == sf::Keyboard::Key::Backspace)
+                {
+                    ChangeLevel();
+                    Begin(window);
+                }
+            }
         }
+
+
 
        window.setView(camera.getView(window.getSize()));
 
@@ -27,7 +40,7 @@ int main()
 
        window.clear(sf::Color::White);
 
-       Render(renderer, window);
+       Render(renderer);
 
        window.display();
     }
