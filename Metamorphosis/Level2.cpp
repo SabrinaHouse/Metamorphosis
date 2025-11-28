@@ -1,6 +1,7 @@
 #include "Level2.h"
 #include "Camera.h"
 #include "Branch.h"
+#include "Twig.h"
 #include "Resources.h"
 #include "Renderer.h"
 #include "Chrysalis.h"
@@ -9,6 +10,7 @@
 
 Chrysalis chrysalis;
 Branch branch;
+Twig twig;
 int numOfBranches = 6;
 
 int rightEdge;
@@ -36,20 +38,21 @@ void Level2::Begin(const sf::Window& window) {
 
 		//move further down each branch
 		branch.position.y = 20 * i;
+		twig.position.y = 20 * i;
 
-		//alternate sides
+		//alternate sides (branches and twigs are opposite from each other)
 		if (i % 2 == 0) {
 			branch.position.x = leftEdge;
+			twig.position.x = rightEdge;
+
 		}
 		else {
 			branch.position.x = rightEdge;
+			twig.position.x = leftEdge;
 		}
 		
 		branch.Begin();
-		branch.leftSide = !branch.leftSide;
-
-		std::cout << "Branch Spawned" << std::endl;
-		std::cout << std::to_string(branch.position.x) << ", " << std::to_string(branch.position.y) << std::endl;
+		twig.Begin();
 	}
 }
 void Level2::Update(float deltaTime) {
@@ -65,17 +68,22 @@ void Level2::Render(Renderer& renderer) {
 
 		//move further down each branch
 		branch.position.y = 20 * i;
+		twig.position.y = 20 * i;
 
 		//alternate sides
 		if (i % 2 == 0) {
 			branch.position.x = leftEdge;
+			twig.position.x = rightEdge;
 		}
 		else {
 			branch.position.x = rightEdge;
+			twig.position.x = leftEdge;
 		}
 
 		branch.Draw(renderer);
+		twig.Draw(renderer);
 		branch.leftSide = !branch.leftSide;
+		twig.leftSide = !twig.leftSide;
 
 		//std::cout << "Branch Dawn" << std::endl;
 		//std::cout << std::to_string(branch.position.x) << ", " << std::to_string(branch.position.y) << std::endl;
