@@ -19,5 +19,5 @@ void Twig::Begin() {
 }
 
 void Twig::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Twig.png"], position, sf::Vector2f(leftSide ? -50.0f : 50.0, 25));
+	renderer.Draw(Resources::textures["Twig.png"], position, sf::Vector2f(leftSide ? 25.0f : -25.0f, 12.5f));
 }

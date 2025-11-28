@@ -7,11 +7,16 @@
 #include "Chrysalis.h"
 #include "Physics.h"
 #include <iostream>
+#include <vector>
 
 Chrysalis chrysalis;
 Branch branch;
 Twig twig;
-int numOfBranches = 6;
+
+//Sets up the layout of the branches and twigs.
+// 0 = Branch-Left Twig-Right
+// 1 = Branch-Right Twig-Left
+std::vector<int> layout = { 0 , 1, 1, 0 , 1 , 1 , 0 , 0 , 1 , 1, 0 , 1, 1, 0 , 1 , 1 , 0 , 0 , 1 , 1 };
 
 int rightEdge;
 int leftEdge;
@@ -28,27 +33,27 @@ void Level2::Begin(const sf::Window& window) {
 
 	sf::View view = camera->getView(window.getSize());
 
-	leftEdge = (view.getCenter().x - (view.getSize().x / 2.0)) + 25;
-	rightEdge = (view.getCenter().x + (view.getSize().x / 2.0)) - 25;
+	leftEdge = (view.getCenter().x - (view.getSize().x / 2.0)) ;
+	rightEdge = (view.getCenter().x + (view.getSize().x / 2.0)) ;
 
 	chrysalis.Begin();
 
-	for (int i = 0; i < numOfBranches; i++)
+	for (int i = 0; i < layout.size(); i++)
 	{
 
 		//move further down each branch
-		branch.position.y = 20 * i;
-		twig.position.y = 20 * i;
+		branch.position.y = 30 * i;
+		twig.position.y = 30 * i;
 
 		//alternate sides (branches and twigs are opposite from each other)
-		if (i % 2 == 0) {
-			branch.position.x = leftEdge;
-			twig.position.x = rightEdge;
+		if (layout[i] == 0) {
+			branch.position.x = leftEdge + 35;
+			twig.position.x = rightEdge - 10;
 
 		}
-		else {
-			branch.position.x = rightEdge;
-			twig.position.x = leftEdge;
+		else if (layout[i] == 1) {
+			branch.position.x = rightEdge - 35;
+			twig.position.x = leftEdge + 10;
 		}
 		
 		branch.Begin();
@@ -63,30 +68,31 @@ void Level2::Update(float deltaTime) {
 
 void Level2::Render(Renderer& renderer) {
 	chrysalis.Draw(renderer);
-	for (int i = 0; i < numOfBranches; i++)
+	for (int i = 0; i < layout.size(); i++)
 	{
 
 		//move further down each branch
-		branch.position.y = 20 * i;
-		twig.position.y = 20 * i;
+		branch.position.y = 30 * i;
+		twig.position.y = 30 * i;
 
 		//alternate sides
-		if (i % 2 == 0) {
-			branch.position.x = leftEdge;
-			twig.position.x = rightEdge;
+		if (layout[i] == 0) {
+			//ensure the images are loaded in the correct orientatiom
+			branch.leftSide = true;
+			twig.leftSide = false;
+			branch.position.x = leftEdge + 35;
+			twig.position.x = rightEdge - 10;
 		}
-		else {
-			branch.position.x = rightEdge;
-			twig.position.x = leftEdge;
+		else if (layout[i] == 1) {
+			//ensure the images are loaded in the correct orientatiom
+			branch.leftSide = false;
+			twig.leftSide = true;
+			branch.position.x = rightEdge - 35;
+			twig.position.x = leftEdge + 10;
 		}
 
 		branch.Draw(renderer);
 		twig.Draw(renderer);
-		branch.leftSide = !branch.leftSide;
-		twig.leftSide = !twig.leftSide;
-
-		//std::cout << "Branch Dawn" << std::endl;
-		//std::cout << std::to_string(branch.position.x) << ", " << std::to_string(branch.position.y) << std::endl;
 	}
 
 	Physics::DebugDraw(renderer);

@@ -20,5 +20,5 @@ void Branch::Begin() {
 }
 
 void Branch::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Branch.png"], position, sf::Vector2f(leftSide ? -50.0f : 50.0, 25));
+	renderer.Draw(Resources::textures["Branch.png"], position, sf::Vector2f(leftSide ? 100.0f : -100.0, 50));
 }
