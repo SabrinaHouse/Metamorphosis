@@ -16,9 +16,10 @@ void Chrysalis::Begin() {
 
 	b2FixtureDef fixtureDef{};
 	fixtureDef.density = 4;
+	fixtureDef.friction = 0;
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(1, 2);
+	polygonShape.SetAsBox(2, 4);
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 }

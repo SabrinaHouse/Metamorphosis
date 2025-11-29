@@ -22,7 +22,7 @@ public:
 		{
 			shape.setPoint(i, sf::Vector2f(vertices[i].x, vertices[i].y));
 		}
-		shape.setOutlineThickness(0.02f);
+		shape.setOutlineThickness(1.0f);
 		shape.setOutlineColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
 		shape.setFillColor(sf::Color::Transparent);
 		target.draw(shape);
@@ -44,7 +44,7 @@ public:
 		sf::CircleShape circle(radius);
 		circle.setPosition(sf::Vector2f(center.x, center.y));
 		circle.setOrigin(sf::Vector2f(radius, radius));
-		circle.setOutlineThickness(0.02f);
+		circle.setOutlineThickness(1.0f);
 		circle.setOutlineColor(sf::Color(color.r * 255, color.g * 255, color.b * 255, color.a * 255));
 		circle.setFillColor(sf::Color::Transparent);
 		target.draw(circle);

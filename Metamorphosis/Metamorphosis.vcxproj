@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boarder.cpp" />
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Caterpillar.cpp" />
@@ -153,6 +154,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boarder.h" />
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Caterpillar.h" />

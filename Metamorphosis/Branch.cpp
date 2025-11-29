@@ -14,7 +14,7 @@ void Branch::Begin() {
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(2, 1);
+	polygonShape.SetAsBox(50, 10);
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 }

@@ -5,14 +5,14 @@ void Ground::Begin() {
 
 	b2BodyDef bodyDef{};
 	bodyDef.type = b2_staticBody;
-	bodyDef.position.Set(position.x, position.y);
+	bodyDef.position.Set(position.x, position.y + 200);
 	bodyDef.fixedRotation = true;
 	body = Physics::world.CreateBody(&bodyDef);
 
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(2, 1);
+	polygonShape.SetAsBox(300, 130);
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 }

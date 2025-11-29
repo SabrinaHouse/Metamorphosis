@@ -72,6 +72,9 @@
     <ClCompile Include="Ground.cpp">
       <Filter>Source Files\Level2</Filter>
     </ClCompile>
+    <ClCompile Include="Boarder.cpp">
+      <Filter>Source Files\Level2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -111,6 +114,9 @@
       <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="Ground.h">
+      <Filter>Header Files\Level2</Filter>
+    </ClInclude>
+    <ClInclude Include="Boarder.h">
       <Filter>Header Files\Level2</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,9 +2,10 @@
 #include "Camera.h"
 #include "Branch.h"
 #include "Ground.h"
+#include "Boarder.h"
+#include "Chrysalis.h"
 #include "Resources.h"
 #include "Renderer.h"
-#include "Chrysalis.h"
 #include "Physics.h"
 #include <iostream>
 #include <vector>
@@ -12,6 +13,7 @@
 Chrysalis chrysalis;
 Branch branch;
 Ground ground;
+Boarder boarder;
 
 /*
 Sets up the layout of the branches and twigs.
@@ -22,7 +24,9 @@ Sets up the layout of the branches and twigs.
  4 = Branch far left
  5 = ground (finish!!)
  */
-std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 1 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
+//std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 1 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
+
+std::vector<int> layout = { 2 , 0 , 1 , 3 , 4 , 5 };
 
 int rightEdge;
 int leftEdge;
@@ -49,6 +53,7 @@ void Level2::Begin(const sf::Window& window) {
 
 		//move further down each branch
 		branch.position.y = 150 * i;
+		boarder.position.y = 150 * i;
 
 		//change where the branch is based on the layout vector
 		if (layout[i] == 0) {
@@ -78,7 +83,13 @@ void Level2::Begin(const sf::Window& window) {
 			ground.position.y = 150 * i;
 			ground.Begin();
 		}
-		
+
+		//make the boarder on both sides all the way down
+		boarder.position.x = leftEdge - 20;
+		boarder.Begin();
+
+		boarder.position.x = rightEdge + 20;
+		boarder.Begin();
 	}
 }
 void Level2::Update(float deltaTime) {
@@ -97,6 +108,7 @@ void Level2::Render(Renderer& renderer) {
 
 		//move further down each branch
 		branch.position.y = 150 * i;
+		boarder.position.y = 150 * i;
 
 		//alternate sides
 		if (layout[i] == 0) {
@@ -135,5 +147,9 @@ void Level2::Render(Renderer& renderer) {
 			ground.position.y = 150 * i;
 			ground.Draw(renderer);
 		}
+
+		boarder.Draw(renderer);
 	}
+
+	Physics::DebugDraw(renderer);
 }
