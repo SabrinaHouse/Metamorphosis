@@ -1,7 +1,8 @@
 #include "Game.h"
+#include "Physics.h"
 #include <iostream>
 
-Camera camera(100.0f);
+Camera camera(110.0f);
 Levels levels;
 
 Level1 level1(camera);

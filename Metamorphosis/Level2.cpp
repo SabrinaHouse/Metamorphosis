@@ -1,7 +1,7 @@
 #include "Level2.h"
 #include "Camera.h"
 #include "Branch.h"
-#include "Twig.h"
+#include "Ground.h"
 #include "Resources.h"
 #include "Renderer.h"
 #include "Chrysalis.h"
@@ -11,12 +11,18 @@
 
 Chrysalis chrysalis;
 Branch branch;
-Twig twig;
+Ground ground;
 
-//Sets up the layout of the branches and twigs.
-// 0 = Branch-Left Twig-Right
-// 1 = Branch-Right Twig-Left
-std::vector<int> layout = { 0 , 1, 1, 0 , 1 , 1 , 0 , 0 , 1 , 1, 0 , 1, 1, 0 , 1 , 1 , 0 , 0 , 1 , 1 };
+/*
+Sets up the layout of the branches and twigs.
+ 0 = Branch left 
+ 1 = Branch right 
+ 2 = Branch both sides
+ 3 = Branch far right
+ 4 = Branch far left
+ 5 = ground (finish!!)
+ */
+std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 1 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
 
 int rightEdge;
 int leftEdge;
@@ -42,22 +48,37 @@ void Level2::Begin(const sf::Window& window) {
 	{
 
 		//move further down each branch
-		branch.position.y = 30 * i;
-		twig.position.y = 30 * i;
+		branch.position.y = 150 * i;
 
-		//alternate sides (branches and twigs are opposite from each other)
+		//change where the branch is based on the layout vector
 		if (layout[i] == 0) {
 			branch.position.x = leftEdge + 35;
-			twig.position.x = rightEdge - 10;
-
+			branch.Begin();
 		}
 		else if (layout[i] == 1) {
 			branch.position.x = rightEdge - 35;
-			twig.position.x = leftEdge + 10;
+			branch.Begin();
+		}
+		else if (layout[i] == 2) {
+			branch.position.x = rightEdge - 20;
+			branch.Begin();
+			branch.position.x = leftEdge + 20;
+			branch.Begin();
+		}
+		else if (layout[i] == 3) {
+			branch.position.x = rightEdge - 55;
+			branch.Begin();
+		}
+		else if (layout[i] == 4) {
+			branch.position.x = leftEdge + 55;
+			branch.Begin();
+		}
+		//make the ground (finish line!)
+		else if (layout[i] == 5) {
+			ground.position.y = 150 * i;
+			ground.Begin();
 		}
 		
-		branch.Begin();
-		twig.Begin();
 	}
 }
 void Level2::Update(float deltaTime) {
@@ -67,33 +88,52 @@ void Level2::Update(float deltaTime) {
 }
 
 void Level2::Render(Renderer& renderer) {
+
+	renderer.Draw(Resources::textures["Sky.png"], chrysalis.position, sf::Vector2f(camera->getViewSize().x * 1.5, camera->getViewSize().y * 1.5));
 	chrysalis.Draw(renderer);
+
 	for (int i = 0; i < layout.size(); i++)
 	{
 
 		//move further down each branch
-		branch.position.y = 30 * i;
-		twig.position.y = 30 * i;
+		branch.position.y = 150 * i;
 
 		//alternate sides
 		if (layout[i] == 0) {
-			//ensure the images are loaded in the correct orientatiom
+			//ensure the images are loaded in the correct orientation
 			branch.leftSide = true;
-			twig.leftSide = false;
 			branch.position.x = leftEdge + 35;
-			twig.position.x = rightEdge - 10;
+			branch.Draw(renderer);
 		}
 		else if (layout[i] == 1) {
-			//ensure the images are loaded in the correct orientatiom
+			//ensure the images are loaded in the correct orientation
 			branch.leftSide = false;
-			twig.leftSide = true;
 			branch.position.x = rightEdge - 35;
-			twig.position.x = leftEdge + 10;
+			branch.Draw(renderer);
 		}
-
-		branch.Draw(renderer);
-		twig.Draw(renderer);
+		else if (layout[i] == 2) {
+			// two branches on different sides
+			branch.leftSide = false;
+			branch.position.x = rightEdge - 20;
+			branch.Draw(renderer);
+			branch.leftSide = true;
+			branch.position.x = leftEdge + 20;
+			branch.Draw(renderer);
+		}
+		else if (layout[i] == 3) {
+			branch.leftSide = false;
+			branch.position.x = rightEdge - 55;
+			branch.Draw(renderer);
+		}
+		else if (layout[i] == 4) {
+			branch.leftSide = true;
+			branch.position.x = leftEdge + 55;
+			branch.Draw(renderer);
+		}
+		//draw the ground (finish line!)
+		else if (layout[i] == 5) {
+			ground.position.y = 150 * i;
+			ground.Draw(renderer);
+		}
 	}
-
-	Physics::DebugDraw(renderer);
 }

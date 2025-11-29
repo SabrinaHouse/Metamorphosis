@@ -15,7 +15,7 @@ void Chrysalis::Begin() {
 	body = Physics::world.CreateBody(&bodyDef);
 
 	b2FixtureDef fixtureDef{};
-	fixtureDef.density = 5;
+	fixtureDef.density = 4;
 
 	b2PolygonShape polygonShape{};
 	polygonShape.SetAsBox(1, 2);
