@@ -24,9 +24,9 @@ Sets up the layout of the branches and twigs.
  4 = Branch far left
  5 = ground (finish!!)
  */
-//std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 1 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
+std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
 
-std::vector<int> layout = { 2 , 0 , 1 , 3 , 4 , 5 };
+//std::vector<int> layout = { 2 , 0 , 1 , 3 , 4 , 5 };
 
 int rightEdge;
 int leftEdge;
@@ -41,10 +41,9 @@ void Level2::Begin(const sf::Window& window) {
 		}
 	}
 
-	sf::View view = camera->getView(window.getSize());
-
-	leftEdge = (view.getCenter().x - (view.getSize().x / 2.0)) ;
-	rightEdge = (view.getCenter().x + (view.getSize().x / 2.0)) ;
+	//place the branches and boarder 100px away from the player on either side
+	leftEdge = (chrysalis.position.x - 100) ;
+	rightEdge = (chrysalis.position.x + 100) ;
 
 	chrysalis.Begin();
 
@@ -56,6 +55,7 @@ void Level2::Begin(const sf::Window& window) {
 		boarder.position.y = 150 * i;
 
 		//change where the branch is based on the layout vector
+		//make switch case if ur bored one day
 		if (layout[i] == 0) {
 			branch.position.x = leftEdge + 35;
 			branch.Begin();
@@ -96,6 +96,11 @@ void Level2::Update(float deltaTime) {
 	Physics::Update(deltaTime);
 	chrysalis.Update(deltaTime);
 	camera->position = chrysalis.position;
+
+	if (chrysalis.hitBranch) {
+		chrysalis.Reset();
+		chrysalis.hitBranch = false;
+	}
 }
 
 void Level2::Render(Renderer& renderer) {
@@ -142,13 +147,14 @@ void Level2::Render(Renderer& renderer) {
 			branch.position.x = leftEdge + 55;
 			branch.Draw(renderer);
 		}
+		
+		boarder.Draw(renderer);
+
 		//draw the ground (finish line!)
-		else if (layout[i] == 5) {
+		if (layout[i] == 5) {
 			ground.position.y = 150 * i;
 			ground.Draw(renderer);
 		}
-
-		boarder.Draw(renderer);
 	}
 
 	Physics::DebugDraw(renderer);

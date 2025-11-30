@@ -1,6 +1,7 @@
 #include "Chrysalis.h"
 #include "Resources.h"
 #include "Physics.h"
+#include <iostream>
 
 constexpr float M_PI = 22.0 / 7.0;
 
@@ -20,6 +21,12 @@ void Chrysalis::Begin() {
 
 	b2PolygonShape polygonShape{};
 	polygonShape.SetAsBox(2, 4);
+	fixtureDef.shape = &polygonShape;
+	body->CreateFixture(&fixtureDef);
+
+	polygonShape.SetAsBox(2, 4);
+	fixtureDef.isSensor = true;
+	fixtureDef.userData = this;
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 }
@@ -45,5 +52,25 @@ void Chrysalis::Update(float deltaTime) {
 
 }
 void Chrysalis::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Chrysalis.png"], position, sf::Vector2f(facingLeft ? -10.0f : 10.0, 10.0f));
+	renderer.Draw(Resources::textures["Chrysalis.png"], position, sf::Vector2f(facingLeft ? -15.0f : 15.0, 15.0f));
+}
+
+void Chrysalis::OnBeginContact() {
+	hitBranch = true;
+}
+
+void Chrysalis::OnEndContact() {
+
+}
+
+void Chrysalis::Reset() {
+	b2Vec2 velocity = body->GetLinearVelocity();
+	velocity.x = 0;
+	velocity.y = 0;
+
+	position = sf::Vector2f(0, 0);
+
+
+	
+
 }

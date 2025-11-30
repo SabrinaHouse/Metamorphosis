@@ -10,24 +10,16 @@ void Boarder::Begin() {
 
 	b2FixtureDef fixtureDef{};
 
-	b2PolygonShape leftSide{};
-	leftSide.SetAsBox(20, 200);
-	fixtureDef.shape = &leftSide;
+	b2PolygonShape polygonShape{};
+	polygonShape.SetAsBox(20, 200);
+	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
-
-	/*
-	b2PolygonShape rightSide{};
-	rightSide.SetAsBox(20, 200);
-	bodyDef.position.Set(-position.x, position.y);
-	fixtureDef.shape = &rightSide;
-	body->CreateFixture(&fixtureDef); */
-
 }
 
 void Boarder::Draw(Renderer& renderer) {
 	//draw the boarder on both sides at the same time
-	renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(-50, 250));
+	renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(-75, 250));
 
-	renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-position.x , position.y) , sf::Vector2f(50, 250));
+	renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-position.x , position.y) , sf::Vector2f(75, 250));
 
 }

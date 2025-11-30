@@ -3,6 +3,7 @@
 #include "Physics.h"
 
 class Chrysalis
+	: public ContactListener
 {
 
 public:
@@ -10,8 +11,15 @@ public:
 	void Update(float deltaTime);
 	void Draw(Renderer& renderer);
 
+	//inherited from contact listener
+	virtual void OnBeginContact() override;
+	virtual void OnEndContact() override;
+
+	void Reset();
+
 	sf::Vector2f startPosition{};
 	sf::Vector2f position{};
+	bool hitBranch = false;
 
 private:
 	b2Body* body;

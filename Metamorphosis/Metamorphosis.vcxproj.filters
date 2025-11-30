@@ -42,9 +42,6 @@
     <ClCompile Include="Level1.cpp">
       <Filter>Source Files\Level1</Filter>
     </ClCompile>
-    <ClCompile Include="Chrysalis.cpp">
-      <Filter>Source Files\Level2</Filter>
-    </ClCompile>
     <ClCompile Include="Level2.cpp">
       <Filter>Source Files\Level2</Filter>
     </ClCompile>
@@ -73,6 +70,9 @@
       <Filter>Source Files\Level2</Filter>
     </ClCompile>
     <ClCompile Include="Boarder.cpp">
+      <Filter>Source Files\Level2</Filter>
+    </ClCompile>
+    <ClCompile Include="Chrysalis.cpp">
       <Filter>Source Files\Level2</Filter>
     </ClCompile>
   </ItemGroup>
