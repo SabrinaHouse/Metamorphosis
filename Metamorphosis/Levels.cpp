@@ -1,9 +1,12 @@
 #include "Levels.h"
 
-void Levels::ChangeLevels() {
+int currentLevel = 0;
+int maxLevel = 2;
+
+void ChangeLevels() {
 	currentLevel = (currentLevel + 1) % maxLevel;
 }
 
-int Levels::ReturnLevel() {
+int CurrentLevel() {
 	return currentLevel;
 }

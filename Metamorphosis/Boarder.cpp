@@ -6,7 +6,7 @@ void Boarder::Begin() {
 	bodyDef.type = b2_staticBody;
 	bodyDef.position.Set(position.x, position.y);
 	bodyDef.fixedRotation = true;
-	body = Physics::world.CreateBody(&bodyDef);
+	body = Physics::world->CreateBody(&bodyDef);
 
 	b2FixtureDef fixtureDef{};
 

@@ -3,7 +3,6 @@
 #include <iostream>
 
 Camera camera(200.0f);
-Levels levels;
 
 Level1 level1(camera);
 Level2 level2(camera);
@@ -11,7 +10,7 @@ Level2 level2(camera);
 
 void Begin(const sf::Window& window)
 {
-	switch (levels.ReturnLevel()) {
+	switch (CurrentLevel()) {
 	case 0:
 		level1.Begin(window);
 		break;
@@ -25,7 +24,7 @@ void Begin(const sf::Window& window)
 void Update(float deltaTime)
 {
 	//std::cout << currentLevel << std::endl;
-	switch (levels.ReturnLevel()) {
+	switch (CurrentLevel()) {
 	case 0:
 		level1.Update(deltaTime);
 		break;
@@ -36,7 +35,7 @@ void Update(float deltaTime)
 }
 void Render(Renderer& renderer)
 {
-	switch (levels.ReturnLevel()) {
+	switch (CurrentLevel()) {
 	case 0:
 		level1.Render(renderer);
 		break;

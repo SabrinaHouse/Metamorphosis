@@ -10,4 +10,3 @@ void Update(float deltaTime);
 void Render(Renderer& renderer);
 
 extern Camera camera;
-extern Levels levels;

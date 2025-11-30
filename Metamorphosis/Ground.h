@@ -10,6 +10,7 @@ public:
 
 	sf::Vector2f position{};
 	bool leftSide = false;
+	std::string tag{};
 
 private:
 	b2Body* body;

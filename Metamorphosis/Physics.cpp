@@ -1,6 +1,6 @@
 #include "Physics.h"
 
-b2World Physics::world{ b2Vec2(0.0f, 9.2f) };
+b2World* Physics::world{};
 MyDebugDraw* Physics::debugDraw{};
 
 //set up to draw hitboxes for various shapes
@@ -104,48 +104,54 @@ class MyGlobalConstactListener :
 {
 	virtual void BeginContact(b2Contact* contact) override
 	{
-		ContactListener* listener = (ContactListener*)contact->GetFixtureA()->GetUserData();
+		FixtureData* data = (FixtureData*)contact->GetFixtureA()->GetUserData();
 
-		if (listener)
+		if (data && data->listener)
 		{
-			listener->OnBeginContact();
+			data->listener->OnBeginContact(contact->GetFixtureB());
 		}
 
-		listener = (ContactListener*)contact->GetFixtureB()->GetUserData();
+		data = (FixtureData*)contact->GetFixtureB()->GetUserData();
 
-		if (listener)
+		if (data && data->listener)
 		{
-			listener->OnBeginContact();
+			data->listener->OnBeginContact(contact->GetFixtureA());
 		}
 	}
 
 	virtual void EndContact(b2Contact* contact) override
 	{
-		ContactListener* listener = (ContactListener*)contact->GetFixtureA()->GetUserData();
+		FixtureData* data = (FixtureData*)contact->GetFixtureA()->GetUserData();
 
-		if (listener)
+		if (data && data->listener)
 		{
-			listener->OnEndContact();
+			data->listener->OnEndContact(contact->GetFixtureB());
 		}
 
-		listener = (ContactListener*)contact->GetFixtureB()->GetUserData();
+		data = (FixtureData*)contact->GetFixtureB()->GetUserData();
 
-		if (listener)
+		if (data && data->listener)
 		{
-			listener->OnEndContact();
+			data->listener->OnEndContact(contact->GetFixtureA());
 		}
 	}
 };
 
 void Physics::Init()
 {
+	if (world)
+	{
+		delete world;
+	}
 
+	world = new b2World(b2Vec2(0, 9.2));
+	world->SetDebugDraw(debugDraw);
 }
 
 void Physics::Update(float deltaTime)
 {
-	world.Step(deltaTime, 8, 3);
-	world.SetContactListener(new MyGlobalConstactListener());
+	world->Step(deltaTime, 8, 3);
+	world->SetContactListener(new MyGlobalConstactListener());
 }
 
 void Physics::DebugDraw(Renderer& renderer)
@@ -154,9 +160,9 @@ void Physics::DebugDraw(Renderer& renderer)
 	{
 		debugDraw = new MyDebugDraw(renderer.target);
 		debugDraw->SetFlags(b2Draw::e_aabbBit);
-		world.SetDebugDraw(debugDraw);
+		world->SetDebugDraw(debugDraw);
 	}
 
-	//world.DrawDebugData();
+	//world->DrawDebugData();
 }
 

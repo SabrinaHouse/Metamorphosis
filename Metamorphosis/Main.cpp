@@ -4,7 +4,6 @@
 #include "Level2.h"
 #include "Renderer.h"
 #include "Game.h"
-#include "Levels.h"
 
 int main()
 {
@@ -27,7 +26,7 @@ int main()
                 auto keyEvent = event->getIf<sf::Event::KeyReleased>();
                 if (keyEvent->code == sf::Keyboard::Key::Backspace)
                 {
-                    levels.ChangeLevels();
+                    ChangeLevels();
                     Begin(window);
                 }
             }
