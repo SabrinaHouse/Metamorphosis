@@ -10,7 +10,6 @@ public:
 	void Update(float deltaTime);
 	void Draw(Renderer& renderer);
 
-	sf::Vector2f startPosition{};
 	sf::Vector2f position{};
 
 private:

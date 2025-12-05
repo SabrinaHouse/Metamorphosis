@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D.h>
 #include "Camera.h"
-#include "Level2.h"
 #include "Renderer.h"
 #include "Game.h"
+
 
 int main()
 {
@@ -12,6 +12,7 @@ int main()
     Renderer renderer(window);
 
     Begin(window);
+
     while (window.isOpen())
     {
         float deltaTime = deltaClock.restart().asSeconds();
@@ -38,7 +39,7 @@ int main()
 
        Update(deltaTime);
 
-       window.clear(sf::Color::White);
+       window.clear();
 
        Render(renderer);
 

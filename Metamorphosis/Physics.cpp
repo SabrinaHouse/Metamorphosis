@@ -163,6 +163,6 @@ void Physics::DebugDraw(Renderer& renderer)
 		world->SetDebugDraw(debugDraw);
 	}
 
-	//world->DrawDebugData();
+	world->DrawDebugData();
 }
 

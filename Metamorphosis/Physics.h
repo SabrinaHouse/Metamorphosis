@@ -8,6 +8,7 @@ class MyDebugDraw;
 class Chrysalis;
 class Branch;
 class Ground;
+class Caterpillar;
 
 class ContactListener
 {
@@ -31,7 +32,8 @@ enum class FixtureDataType
 {
 	Chrysalis,
 	Branch,
-	Ground
+	Ground,
+	Caterpillar
 };
 
 struct FixtureData
@@ -44,6 +46,12 @@ struct FixtureData
 		Chrysalis* chrysalis;
 		Branch* branch;
 		Ground* ground;
+		Caterpillar* caterpillar;
+
+	};
+
+	union
+	{
 	};
 	
 };

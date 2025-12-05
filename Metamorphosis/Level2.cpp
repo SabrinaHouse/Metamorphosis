@@ -25,9 +25,10 @@ Sets up the layout of the branches and twigs.
  4 = Branch far left
  5 = ground (finish!!)
  */
-std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
 
-//std::vector<int> layout = { 2 , 2 , 2 , 2, 5 };
+//std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
+
+std::vector<int> layout = { 2 , 2 , 2 , 2, 5 };
 
 int rightEdge;
 int leftEdge;
@@ -88,65 +89,12 @@ void Level2::Restart() {
 
 void Level2::Begin(const sf::Window& window) {
 	camera->position = sf::Vector2f(0, 0);
-	
-	for (auto& file : std::filesystem::directory_iterator("./Resources/"))
-	{
-		if (file.is_regular_file() && file.path().extension() == ".png") {
-			Resources::textures[file.path().filename().string()].loadFromFile(file.path().string());
-		}
-	}
 
 	//place the branches and boarder 100px away from the player on either side
 	leftEdge = (chrysalis.position.x - 100) ;
 	rightEdge = (chrysalis.position.x + 100) ;
 
 	Restart();
-
-	/*
-	for (int i = 0; i < layout.size(); i++)
-	{
-
-		//move further down each branch
-		branch.position.y = 150 * i;
-		boarder.position.y = 150 * i;
-
-		//change where the branch is based on the layout vector
-		//make switch case if ur bored one day
-		if (layout[i] == 0) {
-			branch.position.x = leftEdge + 35;
-			branch.Begin();
-		}
-		else if (layout[i] == 1) {
-			branch.position.x = rightEdge - 35;
-			branch.Begin();
-		}
-		else if (layout[i] == 2) {
-			branch.position.x = rightEdge - 20;
-			branch.Begin();
-			branch.position.x = leftEdge + 20;
-			branch.Begin();
-		}
-		else if (layout[i] == 3) {
-			branch.position.x = rightEdge - 55;
-			branch.Begin();
-		}
-		else if (layout[i] == 4) {
-			branch.position.x = leftEdge + 55;
-			branch.Begin();
-		}
-		//make the ground (finish line!)
-		else if (layout[i] == 5) {
-			ground.position.y = 150 * i;
-			ground.Begin();
-		}
-
-		//make the boarder on both sides all the way down
-		boarder.position.x = leftEdge - 20;
-		boarder.Begin();
-
-		boarder.position.x = rightEdge + 20;
-		boarder.Begin();
-	} */
 }
 void Level2::Update(float deltaTime) {
 	Physics::Update(deltaTime);
