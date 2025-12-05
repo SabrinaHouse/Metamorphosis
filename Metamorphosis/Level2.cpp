@@ -104,6 +104,10 @@ void Level2::Update(float deltaTime) {
 	if (chrysalis.hitBranch) {
 		Restart();
 	}
+	if (chrysalis.hitGround) {
+		stageComplete = true;
+	}
+
 
 }
 

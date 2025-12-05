@@ -3,6 +3,7 @@
 #include "Physics.h"
 
 class Caterpillar
+	: public ContactListener
 {
 
 public:
@@ -10,6 +11,10 @@ public:
 	void Update(float deltaTime);
 	void Draw(Renderer& renderer);
 
+	virtual void OnBeginContact(b2Fixture* other) override;
+	virtual void OnEndContact(b2Fixture* other) override;
+
+	int eatenLeaves;
 	sf::Vector2f position{};
 
 private:

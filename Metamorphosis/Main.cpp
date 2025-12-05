@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Game.h"
 
+Game game;
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
     sf::Clock deltaClock;
     Renderer renderer(window);
 
-    Begin(window);
+    game.Begin(window);
 
     while (window.isOpen())
     {
@@ -28,20 +29,23 @@ int main()
                 if (keyEvent->code == sf::Keyboard::Key::Backspace)
                 {
                     ChangeLevels();
-                    Begin(window);
+                    game.Begin(window);
                 }
             }
         }
 
-
+        if (game.LevelComplete) {
+            ChangeLevels();
+            game.Begin(window);
+        }
 
        window.setView(camera.getView(window.getSize()));
 
-       Update(deltaTime);
+       game.Update(deltaTime);
 
        window.clear();
 
-       Render(renderer);
+       game.Render(renderer);
 
        window.display();
     }

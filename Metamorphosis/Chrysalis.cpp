@@ -67,7 +67,7 @@ void Chrysalis::Draw(Renderer& renderer) {
 void Chrysalis::OnBeginContact(b2Fixture* other) {
 	FixtureData* data = (FixtureData*)other->GetUserData();
 	if (data && data->type == FixtureDataType::Ground && data->ground->tag == "ground") {
-		ChangeLevels();
+		hitGround = true;
 	} else if (data && data->type == FixtureDataType::Branch) {
 		hitBranch = true;
 	}

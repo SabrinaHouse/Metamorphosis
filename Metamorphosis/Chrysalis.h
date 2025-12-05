@@ -20,6 +20,7 @@ public:
 	sf::Vector2f startPosition{};
 	sf::Vector2f position{};
 	bool hitBranch;
+	bool hitGround = false;
 
 private:
 	FixtureData fixtureData{};

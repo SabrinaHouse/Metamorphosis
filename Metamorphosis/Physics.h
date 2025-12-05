@@ -9,6 +9,7 @@ class Chrysalis;
 class Branch;
 class Ground;
 class Caterpillar;
+class Leaf;
 
 class ContactListener
 {
@@ -33,7 +34,8 @@ enum class FixtureDataType
 	Chrysalis,
 	Branch,
 	Ground,
-	Caterpillar
+	Caterpillar,
+	Leaf
 };
 
 struct FixtureData
@@ -46,12 +48,12 @@ struct FixtureData
 		Chrysalis* chrysalis;
 		Branch* branch;
 		Ground* ground;
-		Caterpillar* caterpillar;
-
 	};
 
 	union
 	{
+		Caterpillar* caterpillar;
+		Leaf* leaf;
 	};
 	
 };

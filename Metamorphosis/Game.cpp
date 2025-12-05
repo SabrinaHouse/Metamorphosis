@@ -9,7 +9,7 @@ Level1 level1(camera);
 Level2 level2(camera);
 
 
-void Begin(const sf::Window& window)
+void Game::Begin(const sf::Window& window)
 {
 
 	for (auto& file : std::filesystem::directory_iterator("./Resources/"))
@@ -20,32 +20,41 @@ void Begin(const sf::Window& window)
 	}
 	switch (CurrentLevel()) {
 	case 0:
+		LevelComplete = false;
 		level1.Begin(window);
 		break;
 	case 1:
+		LevelComplete = false;
 		level2.Begin(window);
 		break;
 	case 2:
+		LevelComplete = false;
 		break;
 	}
 
 }
 
-void Update(float deltaTime)
+void Game::Update(float deltaTime)
 {
 	//std::cout << currentLevel << std::endl;
 	switch (CurrentLevel()) {
 	case 0:
 		level1.Update(deltaTime);
+		if (level1.stageComplete) {
+			LevelComplete = true;
+		}
 		break;
 	case 1:
 		level2.Update(deltaTime);
+		if (level2.stageComplete) {
+			LevelComplete = true;
+		}
 		break;
 	case 2:
 		break;
 	}
 }
-void Render(Renderer& renderer)
+void Game::Render(Renderer& renderer)
 {
 	switch (CurrentLevel()) {
 	case 0:

@@ -33,9 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Caterpillar.cpp">
       <Filter>Source Files\Level1</Filter>
     </ClCompile>
@@ -74,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="Chrysalis.cpp">
       <Filter>Source Files\Level2</Filter>
+    </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>Source Files\Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Boarder.h">
       <Filter>Header Files\Level2</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Header Files\Level1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

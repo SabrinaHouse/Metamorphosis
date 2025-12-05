@@ -9,6 +9,6 @@ void ChangeLevels() {
 }
 
 int CurrentLevel() {
-	std::cout << currentLevel << std::endl;
+	//std::cout << currentLevel << std::endl;
 	return currentLevel;
 }

@@ -15,5 +15,7 @@ public:
 	void Render(Renderer& renderer);
 
 	Camera *camera;
+
+	bool stageComplete = false;
 };
 
