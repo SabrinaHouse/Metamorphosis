@@ -10,6 +10,8 @@ class Branch;
 class Ground;
 class Caterpillar;
 class Leaf;
+class JuvenileButterfly;
+
 
 class ContactListener
 {
@@ -35,7 +37,8 @@ enum class FixtureDataType
 	Branch,
 	Ground,
 	Caterpillar,
-	Leaf
+	Leaf,
+	JuvenileButterfly
 };
 
 struct FixtureData
@@ -56,6 +59,10 @@ struct FixtureData
 		Leaf* leaf;
 	};
 	
+	union
+	{
+		JuvenileButterfly* juvenileButterfly;
+	};
 };
 
 

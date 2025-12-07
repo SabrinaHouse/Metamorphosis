@@ -23,6 +23,12 @@ void Leaf::Begin() {
 	fixtureDef.userData = fixtureData;
 	body->CreateFixture(&fixtureDef);
 }
+
+void Leaf::Update(float deltaTime) {
+
+}
+
+
 void Leaf::Draw(Renderer& renderer) {
 	renderer.Draw(Resources::textures["Leaf.png"], position, sf::Vector2f(16.0, 8.0f));
 

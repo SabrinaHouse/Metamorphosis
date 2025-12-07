@@ -1,8 +1,8 @@
 #include "Levels.h"
 #include <iostream>
 
-int currentLevel = 0;
-int maxLevel = 3;
+int currentLevel = 2;
+int maxLevel = 4;
 
 void ChangeLevels() {
 	currentLevel = (currentLevel + 1) % maxLevel;

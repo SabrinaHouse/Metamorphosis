@@ -1,15 +1,16 @@
 #include "Level2.h"
 #include "Camera.h"
-#include "Branch.h"
-#include "Ground.h"
-#include "Boarder.h"
-#include "Chrysalis.h"
 #include "Resources.h"
 #include "Renderer.h"
 #include "Physics.h"
 #include "Levels.h"
 #include <iostream>
 #include <vector>
+
+#include "Branch.h"
+#include "Ground.h"
+#include "Boarder.h"
+#include "Chrysalis.h"
 
 Chrysalis chrysalis;
 Branch branch;
@@ -26,9 +27,9 @@ Sets up the layout of the branches and twigs.
  5 = ground (finish!!)
  */
 
-//std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
+std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
 
-std::vector<int> layout = { 2 , 2 , 2 , 2, 5 };
+//::vector<int> layout = { 2 , 2 , 2 , 2, 5 };
 
 int rightEdge;
 int leftEdge;
@@ -36,7 +37,6 @@ int leftEdge;
 void Level2::Restart() {
 	Physics::Init(); 
 
-	chrysalis = Chrysalis();
 	chrysalis.position = sf::Vector2f(0, 0);
 	chrysalis.hitBranch = false;
 	chrysalis.Begin();

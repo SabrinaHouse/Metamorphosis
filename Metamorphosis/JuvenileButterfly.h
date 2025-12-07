@@ -1,10 +1,8 @@
-#pragma once
 #include <SFML/Graphics.hpp>
 #include "Physics.h"
-#include "Resources.h"
+#pragma once
 
-
-class Leaf
+class JuvenileButterfly
 {
 public:
 	void Begin();
@@ -14,6 +12,8 @@ public:
 	sf::Vector2f position{};
 
 private:
-	b2Body* body;
+	b2Body* body{};
+	FixtureData fixtureData{};
+	float jumpPower = 0.1f;
 };
 

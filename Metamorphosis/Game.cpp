@@ -7,6 +7,7 @@ Camera camera(200.0f);
 
 Level1 level1(camera);
 Level2 level2(camera);
+Level3 level3(camera);
 
 
 void Game::Begin(const sf::Window& window)
@@ -29,6 +30,7 @@ void Game::Begin(const sf::Window& window)
 		break;
 	case 2:
 		LevelComplete = false;
+		level3.Begin(window);
 		break;
 	}
 
@@ -51,6 +53,10 @@ void Game::Update(float deltaTime)
 		}
 		break;
 	case 2:
+		level3.Update(deltaTime);
+		if (level3.stageComplete) {
+			LevelComplete = true;
+		}
 		break;
 	}
 }
@@ -64,6 +70,7 @@ void Game::Render(Renderer& renderer)
 		level2.Render(renderer);
 		break;
 	case 2:
+		level3.Render(renderer);
 		break;
 	}
 }

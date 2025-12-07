@@ -2,9 +2,11 @@
 #include "Resources.h"
 #include "Physics.h"
 #include "Levels.h"
+#include "Level1.h"
 #include <iostream>
 
 constexpr float M_PI = 22.0 / 7.0;
+Leaf* leaf;
 
 void Caterpillar::Begin() {
 	//tagging with the correct listeners
@@ -87,5 +89,5 @@ void Caterpillar::OnBeginContact(b2Fixture* other) {
 }
 
 void Caterpillar::OnEndContact(b2Fixture* other) {
-
 }
+	

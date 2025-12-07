@@ -31,6 +31,12 @@
     <Filter Include="Header Files\General">
       <UniqueIdentifier>{08e45571-688a-42fa-bea3-5540a71c3099}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\level3">
+      <UniqueIdentifier>{201e61a4-7ea5-4091-881a-640506c654ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Level3">
+      <UniqueIdentifier>{466d160a-2e5d-49d2-8e29-660bb1c91a15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Caterpillar.cpp">
@@ -78,6 +84,12 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Source Files\level3</Filter>
+    </ClCompile>
+    <ClCompile Include="JuvenileButterfly.cpp">
+      <Filter>Source Files\level3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -124,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="Leaf.h">
       <Filter>Header Files\Level1</Filter>
+    </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>Header Files\Level3</Filter>
+    </ClInclude>
+    <ClInclude Include="JuvenileButterfly.h">
+      <Filter>Header Files\Level3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

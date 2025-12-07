@@ -142,9 +142,11 @@
     <ClCompile Include="Chrysalis.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="JuvenileButterfly.cpp" />
     <ClCompile Include="Leaf.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="Level3.cpp" />
     <ClCompile Include="Levels.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Physics.cpp" />
@@ -162,9 +164,11 @@
     <ClInclude Include="Chrysalis.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="JuvenileButterfly.h" />
     <ClInclude Include="Leaf.h" />
     <ClInclude Include="Level1.h" />
     <ClInclude Include="Level2.h" />
+    <ClInclude Include="Level3.h" />
     <ClInclude Include="Levels.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Resources.h" />
