@@ -18,9 +18,13 @@ std::vector<int> map = { 0 , 1 , 2 , 0 , 1 , 2 };
 float bottomEdge = butterfly.position.y + 80;
 float topEdge = butterfly.position.y - 80;
 
-void Level3::Begin(const sf::Window& window) {
+void Level3::Restart() {
 	Physics::Init();
+	butterfly.position = sf::Vector2f(0, 0);
+	butterfly.collided = false;
 	butterfly.Begin();
+
+	camera->position = sf::Vector2f(0, 0);
 
 	for (int i = 0; i < map.size(); i++)
 	{
@@ -31,7 +35,7 @@ void Level3::Begin(const sf::Window& window) {
 		//change where the bush is based on the layout vector
 		//make switch case if ur bored one day
 		switch (map[i]) {
-		case 0 :
+		case 0:
 			bush.position.y = bottomEdge;
 			bush.Begin();
 			break;
@@ -44,14 +48,22 @@ void Level3::Begin(const sf::Window& window) {
 			bush.Begin();
 			break;
 		}
-	
+
 	}
+}
+
+void Level3::Begin(const sf::Window& window) {
+	Restart();
 }
 
 void Level3::Update(float deltaTime) {
 	Physics::Update(deltaTime);
 	butterfly.Update(deltaTime);
 	camera->position.x = butterfly.position.x;
+
+	if (butterfly.collided) {
+		Restart();
+	}
 }
 
 void Level3::Render(Renderer& renderer) {

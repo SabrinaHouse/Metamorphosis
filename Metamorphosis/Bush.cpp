@@ -20,6 +20,7 @@ void Bush::Begin() {
 	b2PolygonShape polygonShape{};
 	polygonShape.SetAsBox(40, 55);
 	fixtureDef.shape = &polygonShape;
+	fixtureDef.isSensor = true;
 	fixtureDef.userData = fixtureData;
 	body->CreateFixture(&fixtureDef);
 }

@@ -15,8 +15,6 @@ public:
 	virtual void OnBeginContact(b2Fixture* other) override;
 	virtual void OnEndContact(b2Fixture* other) override;
 
-	void Reset();
-
 	sf::Vector2f startPosition{};
 	sf::Vector2f position{};
 	bool hitBranch;

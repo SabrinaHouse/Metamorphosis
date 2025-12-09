@@ -9,7 +9,7 @@ sf::Event* event;
 void JuvenileButterfly::Begin() {
 	//tagging with the correct listeners
 	FixtureData* fixtureData = new FixtureData();
-	//fixtureData->listener = this;
+	fixtureData->listener = this;
 	fixtureData->juvenileButterfly = this;
 	fixtureData->type = FixtureDataType::JuvenileButterfly;
 
@@ -61,4 +61,15 @@ void JuvenileButterfly::Update(float deltaTime) {
 
 void JuvenileButterfly::Draw(Renderer& renderer) {
 	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(20.0, 15.0f));
+}
+
+void JuvenileButterfly::OnBeginContact(b2Fixture* other) {
+	FixtureData* data = (FixtureData*)other->GetUserData();
+	if (data && data->type == FixtureDataType::Bush) {
+		collided = true;
+	}
+}
+
+void JuvenileButterfly::OnEndContact(b2Fixture* other) {
+
 }

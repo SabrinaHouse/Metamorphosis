@@ -76,15 +76,3 @@ void Chrysalis::OnBeginContact(b2Fixture* other) {
 void Chrysalis::OnEndContact(b2Fixture* other) {
 
 }
-
-void Chrysalis::Reset() {
-	b2Vec2 velocity = body->GetLinearVelocity();
-	velocity.x = 0;
-	velocity.y = 0;
-
-	position = sf::Vector2f(0, 0);
-
-
-	
-
-}
