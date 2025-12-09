@@ -14,6 +14,5 @@ public:
 private:
 	b2Body* body{};
 	FixtureData fixtureData{};
-	float jumpPower = 0.1f;
+	float jumpPower = 60.0f;
 };
-

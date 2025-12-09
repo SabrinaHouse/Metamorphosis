@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Boarder.cpp" />
     <ClCompile Include="Branch.cpp" />
+    <ClCompile Include="Bush.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Caterpillar.cpp" />
     <ClCompile Include="Chrysalis.cpp" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Boarder.h" />
     <ClInclude Include="Branch.h" />
+    <ClInclude Include="Bush.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Caterpillar.h" />
     <ClInclude Include="Chrysalis.h" />

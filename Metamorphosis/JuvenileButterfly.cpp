@@ -4,6 +4,8 @@
 #include "Levels.h"
 #include <iostream>
 
+sf::Event* event;
+
 void JuvenileButterfly::Begin() {
 	//tagging with the correct listeners
 	FixtureData* fixtureData = new FixtureData();
@@ -18,32 +20,38 @@ void JuvenileButterfly::Begin() {
 	bodyDef.fixedRotation = true;
 	body = Physics::world->CreateBody(&bodyDef);
 
+
 	b2FixtureDef fixtureDef{};
-	fixtureDef.density = 10000;
+	fixtureDef.density = 2;
 	fixtureDef.friction = 5;
 	fixtureDef.userData = fixtureData;
 
 	b2PolygonShape polygonShape{};
 	polygonShape.SetAsBox(4, 4);
 	fixtureDef.shape = &polygonShape;
+	body->SetGravityScale(5.0f);
 	body->CreateFixture(&fixtureDef);
 
 	//making the box that detects if the player has hit something
-	/*
 	polygonShape.SetAsBox(4, 4);
 	fixtureDef.isSensor = true;
 	fixtureDef.shape = &polygonShape;
-	body->CreateFixture(&fixtureDef); */
+	body->CreateFixture(&fixtureDef); 
 }
+
+sf::Clock jumpClock;
 
 void JuvenileButterfly::Update(float deltaTime) {
 	b2Vec2 velocity = body->GetLinearVelocity();
 	velocity.x = 20;
 
 	//jump
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) && jumpClock.getElapsedTime().asSeconds() >= 0.5f 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up) && jumpClock.getElapsedTime().asSeconds() >= 0.5f 
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space) && jumpClock.getElapsedTime().asSeconds() >= 0.5f)
 	{
 		velocity.y -= jumpPower;
+		jumpClock.restart();
 		std::cout << std::to_string(position.x) << ", " << std::to_string(position.y) << std::endl;
 	}
 

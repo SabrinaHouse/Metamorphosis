@@ -90,6 +90,9 @@
     <ClCompile Include="JuvenileButterfly.cpp">
       <Filter>Source Files\level3</Filter>
     </ClCompile>
+    <ClCompile Include="Bush.cpp">
+      <Filter>Source Files\level3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -141,6 +144,9 @@
       <Filter>Header Files\Level3</Filter>
     </ClInclude>
     <ClInclude Include="JuvenileButterfly.h">
+      <Filter>Header Files\Level3</Filter>
+    </ClInclude>
+    <ClInclude Include="Bush.h">
       <Filter>Header Files\Level3</Filter>
     </ClInclude>
   </ItemGroup>
