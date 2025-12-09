@@ -4,9 +4,13 @@
 
 class Bush
 {
+public:
 	void Begin();
 	void Draw(Renderer& renderer);
 
 	sf::Vector2f position{};
+
+private:
+	b2Body* body{};
 };
 

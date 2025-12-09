@@ -27,13 +27,13 @@ void JuvenileButterfly::Begin() {
 	fixtureDef.userData = fixtureData;
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(4, 4);
+	polygonShape.SetAsBox(8, 6);
 	fixtureDef.shape = &polygonShape;
 	body->SetGravityScale(5.0f);
 	body->CreateFixture(&fixtureDef);
 
 	//making the box that detects if the player has hit something
-	polygonShape.SetAsBox(4, 4);
+	polygonShape.SetAsBox(8, 6);
 	fixtureDef.isSensor = true;
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef); 
@@ -43,7 +43,7 @@ sf::Clock jumpClock;
 
 void JuvenileButterfly::Update(float deltaTime) {
 	b2Vec2 velocity = body->GetLinearVelocity();
-	velocity.x = 20;
+	velocity.x = 30;
 
 	//jump
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) && jumpClock.getElapsedTime().asSeconds() >= 0.5f 
@@ -52,7 +52,7 @@ void JuvenileButterfly::Update(float deltaTime) {
 	{
 		velocity.y -= jumpPower;
 		jumpClock.restart();
-		std::cout << std::to_string(position.x) << ", " << std::to_string(position.y) << std::endl;
+		//std::cout << std::to_string(position.x) << ", " << std::to_string(position.y) << std::endl;
 	}
 
 	body->SetLinearVelocity(velocity);
@@ -60,5 +60,5 @@ void JuvenileButterfly::Update(float deltaTime) {
 }
 
 void JuvenileButterfly::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(15.0, 15.0f));
+	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(20.0, 15.0f));
 }

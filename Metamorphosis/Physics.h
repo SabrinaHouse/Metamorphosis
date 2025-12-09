@@ -5,12 +5,14 @@
 
 class MyDebugDraw;
 
+//forward declarations for each class to avoid circular dependencies
 class Chrysalis;
 class Branch;
 class Ground;
 class Caterpillar;
 class Leaf;
 class JuvenileButterfly;
+class Bush;
 
 
 class ContactListener
@@ -33,12 +35,18 @@ public:
 
 enum class FixtureDataType
 {
+	//lvl 1
+	Caterpillar,
+	Leaf,
+
+	//lvl 2
 	Chrysalis,
 	Branch,
 	Ground,
-	Caterpillar,
-	Leaf,
-	JuvenileButterfly
+
+	//lvl 3
+	JuvenileButterfly,
+	Bush
 };
 
 struct FixtureData
@@ -46,6 +54,14 @@ struct FixtureData
 	ContactListener* listener;
 	FixtureDataType type;
 
+	//level 1 data types
+	union
+	{
+		Caterpillar* caterpillar;
+		Leaf* leaf;
+	};
+
+	//level 2 data types
 	union
 	{
 		Chrysalis* chrysalis;
@@ -53,15 +69,11 @@ struct FixtureData
 		Ground* ground;
 	};
 
-	union
-	{
-		Caterpillar* caterpillar;
-		Leaf* leaf;
-	};
-	
+	// level 3 data types
 	union
 	{
 		JuvenileButterfly* juvenileButterfly;
+		Bush* bush;
 	};
 };
 
