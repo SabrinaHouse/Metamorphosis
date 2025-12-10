@@ -10,12 +10,22 @@
 #include "JuvenileButterfly.h"
 #include "Bush.h"
 #include "Vines.h"
+#include "Flower.h"
 
 JuvenileButterfly butterfly;
 Bush bush;
 Vines vine;
+Flower flower;
 
-std::vector<int> map = { 0 , 1 , 2 , 0 , 1 , 2 };
+/*
+MAP KEY:
+0 = Center
+1 = Low
+2 = High
+3 = Finish
+*/
+
+std::vector<int> map = { 0 , 3};
 
 float bottomEdge = butterfly.position.y + 80;
 float topEdge = butterfly.position.y - 80;
@@ -48,14 +58,19 @@ void Level3::Restart() {
 		case 1:
 			bush.position.y = bottomEdge + 30;
 			bush.Begin();
-			vine.position.y = topEdge + 30;
+			vine.position.y = topEdge + 25;
 			vine.Begin();
 			break;
 		case 2:
-			bush.position.y = bottomEdge - 20;
+			bush.position.y = bottomEdge - 15;
 			bush.Begin();
 			vine.position.y = topEdge - 20;
 			vine.Begin();
+			break;
+		case 3:
+			flower.position.x = (200 * i) + 150;
+			flower.position.y = bottomEdge;
+			flower.Begin();
 			break;
 		}
 
@@ -74,11 +89,14 @@ void Level3::Update(float deltaTime) {
 	if (butterfly.collided) {
 		Restart();
 	}
+	if (butterfly.onFlower)
+	{
+		stageComplete = true;
+	}
 }
 
 void Level3::Render(Renderer& renderer) {
 	renderer.Draw(Resources::textures["Sky.png"], sf::Vector2f(butterfly.position.x , 0) , sf::Vector2f(camera->getViewSize().x * 1.5, camera->getViewSize().y * 1.5));
-	butterfly.Draw(renderer);
 
 	for (int i = 0; i < map.size(); i++)
 	{
@@ -98,16 +116,24 @@ void Level3::Render(Renderer& renderer) {
 		case 1:
 			bush.position.y = bottomEdge + 30;
 			bush.Draw(renderer); 
-			vine.position.y = topEdge + 30;
+			vine.position.y = topEdge + 25;
 			vine.Draw(renderer);
 			break;
 		case 2:
-			bush.position.y = bottomEdge - 20;
+			bush.position.y = bottomEdge - 15;
 			bush.Draw(renderer);
 			vine.position.y = topEdge - 20;
 			vine.Draw(renderer);
 			break;
+		case 3:
+			flower.position.x = (200 * i) + 150;
+			flower.position.y = bottomEdge;
+			flower.Draw(renderer);
+			break;
 		}
+
+		butterfly.Draw(renderer);
+
 	}
 
 	Physics::DebugDraw(renderer);

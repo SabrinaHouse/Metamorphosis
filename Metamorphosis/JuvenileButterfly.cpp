@@ -68,6 +68,9 @@ void JuvenileButterfly::OnBeginContact(b2Fixture* other) {
 	if (data && data->type == FixtureDataType::Obstacle) {
 		collided = true;
 	}
+	else if (data && data->type == FixtureDataType::Flower) {
+		onFlower = true;
+	}
 }
 
 void JuvenileButterfly::OnEndContact(b2Fixture* other) {

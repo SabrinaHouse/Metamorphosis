@@ -141,6 +141,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Caterpillar.cpp" />
     <ClCompile Include="Chrysalis.cpp" />
+    <ClCompile Include="Flower.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="JuvenileButterfly.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Caterpillar.h" />
     <ClInclude Include="Chrysalis.h" />
+    <ClInclude Include="Flower.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="JuvenileButterfly.h" />

@@ -17,6 +17,7 @@ public:
 	sf::Vector2f position{};
 
 	bool collided = false;
+	bool onFlower = false;
 
 private:
 	b2Body* body{};

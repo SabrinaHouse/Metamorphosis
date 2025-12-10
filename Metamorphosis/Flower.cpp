@@ -1,12 +1,11 @@
-#include "Branch.h"
+#include "Flower.h"
 #include "Resources.h"
 
 
-void Branch::Begin() {
-
+void Flower::Begin() {
 	//tagging with the correct listener
 	FixtureData* fixtureData = new FixtureData();
-	fixtureData->type = FixtureDataType::Branch;
+	fixtureData->type = FixtureDataType::Flower;
 
 	//box 2d body for collisions
 	b2BodyDef bodyDef{};
@@ -18,12 +17,14 @@ void Branch::Begin() {
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(50, 10);
+	polygonShape.SetAsBox(45, 70);
 	fixtureDef.shape = &polygonShape;
+	fixtureDef.isSensor = true;
 	fixtureDef.userData = fixtureData;
 	body->CreateFixture(&fixtureDef);
 }
 
-void Branch::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Branch.png"], position, sf::Vector2f(leftSide ? 100.0f : -100.0, 50));
+void Flower::Draw(Renderer& renderer) {
+	renderer.Draw(Resources::textures["Flower.png"], position, sf::Vector2f(150, 200));
+
 }
