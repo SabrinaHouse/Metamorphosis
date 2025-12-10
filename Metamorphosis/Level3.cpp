@@ -25,12 +25,17 @@ MAP KEY:
 3 = Finish
 */
 
-std::vector<int> map = { 0 , 3};
+//std::vector<int> map = { 0 , 1 , 2, 1 , 0 , 0, 1, 2, 2, 0, 1, 3};
+std::vector<int> map = { 0 , 1, 3 };
 
-float bottomEdge = butterfly.position.y + 80;
-float topEdge = butterfly.position.y - 80;
+float bottomEdge;
+float topEdge;
+
 
 void Level3::Restart() {
+	bottomEdge = butterfly.position.y + (camera->getViewSize().y / 2);
+	topEdge = butterfly.position.y - (camera->getViewSize().y / 2);
+
 	Physics::Init();
 	butterfly.position = sf::Vector2f(0, 0);
 	butterfly.collided = false;
@@ -50,19 +55,19 @@ void Level3::Restart() {
 		//make switch case if ur bored one day
 		switch (map[i]) {
 		case 0:
-			bush.position.y = bottomEdge + 5;
+			bush.position.y = bottomEdge - 5;
 			bush.Begin();
-			vine.position.y = topEdge - 5;
+			vine.position.y = topEdge + 5;
 			vine.Begin();
 			break;
 		case 1:
-			bush.position.y = bottomEdge + 30;
+			bush.position.y = bottomEdge + 20;
 			bush.Begin();
-			vine.position.y = topEdge + 25;
+			vine.position.y = topEdge + 30;
 			vine.Begin();
 			break;
 		case 2:
-			bush.position.y = bottomEdge - 15;
+			bush.position.y = bottomEdge - 30;
 			bush.Begin();
 			vine.position.y = topEdge - 20;
 			vine.Begin();
@@ -84,7 +89,10 @@ void Level3::Begin(const sf::Window& window) {
 void Level3::Update(float deltaTime) {
 	Physics::Update(deltaTime);
 	butterfly.Update(deltaTime);
-	camera->position.x = butterfly.position.x;
+
+	if (butterfly.position.x < flower.position.x - 100) {
+		camera->position.x = butterfly.position.x;
+	}
 
 	if (butterfly.collided) {
 		Restart();
@@ -93,10 +101,21 @@ void Level3::Update(float deltaTime) {
 	{
 		stageComplete = true;
 	}
+	if (butterfly.position.y > bottomEdge || butterfly.position.y < topEdge) {
+		Restart();
+	}
 }
 
 void Level3::Render(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Sky.png"], sf::Vector2f(butterfly.position.x , 0) , sf::Vector2f(camera->getViewSize().x * 1.5, camera->getViewSize().y * 1.5));
+	float skyPositionX;
+	if (butterfly.position.x < flower.position.x - 100) {
+		skyPositionX = butterfly.position.x;
+	}
+	else {
+		skyPositionX = flower.position.x - 100;
+	}
+
+	renderer.Draw(Resources::textures["Sky.png"], sf::Vector2f(skyPositionX , 0) , sf::Vector2f(camera->getViewSize().x * 1.5, camera->getViewSize().y * 1.5));
 
 	for (int i = 0; i < map.size(); i++)
 	{
@@ -108,19 +127,19 @@ void Level3::Render(Renderer& renderer) {
 		//change where the bush is based on the layout vector
 		switch (map[i]) {
 		case 0:
-			bush.position.y = bottomEdge + 5;
+			bush.position.y = bottomEdge - 5;
 			bush.Draw(renderer);
-			vine.position.y = topEdge - 5;
+			vine.position.y = topEdge + 5;
 			vine.Draw(renderer);
 			break;
 		case 1:
-			bush.position.y = bottomEdge + 30;
+			bush.position.y = bottomEdge + 20;
 			bush.Draw(renderer); 
-			vine.position.y = topEdge + 25;
+			vine.position.y = topEdge + 30;
 			vine.Draw(renderer);
 			break;
 		case 2:
-			bush.position.y = bottomEdge - 15;
+			bush.position.y = bottomEdge - 30;
 			bush.Draw(renderer);
 			vine.position.y = topEdge - 20;
 			vine.Draw(renderer);
