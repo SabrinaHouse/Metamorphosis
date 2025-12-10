@@ -13,6 +13,7 @@ class Caterpillar;
 class Leaf;
 class JuvenileButterfly;
 class Bush;
+class Vines;
 
 
 class ContactListener
@@ -46,7 +47,7 @@ enum class FixtureDataType
 
 	//lvl 3
 	JuvenileButterfly,
-	Bush
+	Obstacle
 };
 
 struct FixtureData
@@ -74,6 +75,7 @@ struct FixtureData
 	{
 		JuvenileButterfly* juvenileButterfly;
 		Bush* bush;
+		Vines* vine;
 	};
 };
 

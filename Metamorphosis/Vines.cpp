@@ -1,9 +1,8 @@
-#include "Bush.h"
+#include "Vines.h"
 #include "Resources.h"
 #include "Physics.h"
 
-
-void Bush::Begin() {
+void Vines::Begin() {
 	//tagging with the correct listener
 	FixtureData* fixtureData = new FixtureData();
 	fixtureData->type = FixtureDataType::Obstacle;
@@ -25,7 +24,7 @@ void Bush::Begin() {
 	body->CreateFixture(&fixtureDef);
 }
 
-void Bush::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Bush.png"], position, sf::Vector2f(120, 150));
+void Vines::Draw(Renderer& renderer) {
+	renderer.Draw(Resources::textures["HangingVines.png"], position, sf::Vector2f(100, 150));
 
 }

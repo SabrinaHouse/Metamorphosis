@@ -9,9 +9,11 @@
 
 #include "JuvenileButterfly.h"
 #include "Bush.h"
+#include "Vines.h"
 
 JuvenileButterfly butterfly;
 Bush bush;
+Vines vine;
 
 std::vector<int> map = { 0 , 1 , 2 , 0 , 1 , 2 };
 
@@ -31,21 +33,29 @@ void Level3::Restart() {
 
 		//move further out each section
 		bush.position.x = (200 * i) + 150;
+		vine.position.x = (200 * i) + 150;
+
 
 		//change where the bush is based on the layout vector
 		//make switch case if ur bored one day
 		switch (map[i]) {
 		case 0:
-			bush.position.y = bottomEdge;
+			bush.position.y = bottomEdge + 5;
 			bush.Begin();
+			vine.position.y = topEdge - 5;
+			vine.Begin();
 			break;
 		case 1:
-			bush.position.y = bottomEdge + 35;
+			bush.position.y = bottomEdge + 30;
 			bush.Begin();
+			vine.position.y = topEdge + 30;
+			vine.Begin();
 			break;
 		case 2:
-			bush.position.y = bottomEdge - 25;
+			bush.position.y = bottomEdge - 20;
 			bush.Begin();
+			vine.position.y = topEdge - 20;
+			vine.Begin();
 			break;
 		}
 
@@ -75,20 +85,27 @@ void Level3::Render(Renderer& renderer) {
 
 		//move further out each section
 		bush.position.x = (200 * i) + 150;
+		vine.position.x = (200 * i) + 150;
 
 		//change where the bush is based on the layout vector
 		switch (map[i]) {
 		case 0:
-			bush.position.y = bottomEdge;
+			bush.position.y = bottomEdge + 5;
 			bush.Draw(renderer);
+			vine.position.y = topEdge - 5;
+			vine.Draw(renderer);
 			break;
 		case 1:
-			bush.position.y = bottomEdge + 35;
+			bush.position.y = bottomEdge + 30;
 			bush.Draw(renderer); 
+			vine.position.y = topEdge + 30;
+			vine.Draw(renderer);
 			break;
 		case 2:
-			bush.position.y = bottomEdge - 25;
+			bush.position.y = bottomEdge - 20;
 			bush.Draw(renderer);
+			vine.position.y = topEdge - 20;
+			vine.Draw(renderer);
 			break;
 		}
 	}

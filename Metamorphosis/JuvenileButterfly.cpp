@@ -65,7 +65,7 @@ void JuvenileButterfly::Draw(Renderer& renderer) {
 
 void JuvenileButterfly::OnBeginContact(b2Fixture* other) {
 	FixtureData* data = (FixtureData*)other->GetUserData();
-	if (data && data->type == FixtureDataType::Bush) {
+	if (data && data->type == FixtureDataType::Obstacle) {
 		collided = true;
 	}
 }
