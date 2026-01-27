@@ -99,6 +99,9 @@
     <ClCompile Include="Flower.cpp">
       <Filter>Source Files\level3</Filter>
     </ClCompile>
+    <ClCompile Include="Mantis.cpp">
+      <Filter>Source Files\Level1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="Flower.h">
       <Filter>Header Files\Level3</Filter>
+    </ClInclude>
+    <ClInclude Include="Mantis.h">
+      <Filter>Header Files\Level1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

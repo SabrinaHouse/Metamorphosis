@@ -11,6 +11,7 @@ class Branch;
 class Ground;
 class Caterpillar;
 class Leaf;
+class Mantis;
 class JuvenileButterfly;
 class Bush;
 class Vines;
@@ -40,6 +41,7 @@ enum class FixtureDataType
 	//lvl 1
 	Caterpillar,
 	Leaf,
+	Mantis,
 
 	//lvl 2
 	Chrysalis,
@@ -62,6 +64,7 @@ struct FixtureData
 	{
 		Caterpillar* caterpillar;
 		Leaf* leaf;
+		Mantis* mantis;
 	};
 
 	//level 2 data types

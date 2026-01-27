@@ -151,6 +151,7 @@
     <ClCompile Include="Level3.cpp" />
     <ClCompile Include="Levels.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mantis.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Level3.h" />
     <ClInclude Include="Levels.h" />
+    <ClInclude Include="Mantis.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="Renderer.h" />

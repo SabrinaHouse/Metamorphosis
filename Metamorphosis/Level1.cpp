@@ -9,26 +9,32 @@
 
 #include "Caterpillar.h"
 #include "Leaf.h"
+#include "Mantis.h"
 
 Caterpillar caterpillar;
 Leaf* leaf;
+Mantis* mantis;
+
 std::vector<Leaf*> leaves;
+std::vector<Mantis*> mantises;
+
 
 /*
 MAP KEY
 0 = empty space
 1 = Player
 2 = Leaf
-3 = Mantis
+3 = Left/Right moving Mantis
+4 = Up/Down moving Mantis
 */
 
 std::vector<std::vector<int>> 
 map = {
-	{0, 0, 2, 0, 0},
+	{2, 0, 3, 0, 2},
 	{0, 0, 0, 0, 0},
-	{2, 0, 1, 0, 2},
+	{4, 0, 1, 0, 4},
 	{0, 0, 0, 0, 0},
-	{0, 0, 2, 0, 0}
+	{2, 0, 3, 0, 2}
 };
 
 void Level1::CreateMap(std::vector<std::vector<int>> map) {
@@ -46,6 +52,18 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 				leaf->position = sf::Vector2f(j * distance, i * distance);
 				leaves.push_back(leaf);
 			}
+			else if (map[i][j] == 3) {
+				mantis = new Mantis();
+				mantis->LeftToRight = true;
+				mantis->position = sf::Vector2f(j * distance, i * distance);
+				mantises.push_back(mantis);
+			}
+			else if (map[i][j] == 4) {
+				mantis = new Mantis();
+				mantis->LeftToRight = false;
+				mantis->position = sf::Vector2f(j * distance, i * distance);
+				mantises.push_back(mantis);
+			}
 		}
 
 	}
@@ -61,6 +79,10 @@ void Level1::Begin(const sf::Window& window) {
 	for (auto& leaf : leaves) {
 		leaf->Begin();
 	}
+
+	for (auto& mantis : mantises) {
+		mantis->Begin();
+	}
 }
 void Level1::Update(float deltaTime) {
 	Physics::Update(deltaTime);
@@ -75,6 +97,10 @@ void Level1::Update(float deltaTime) {
 		}
 	}
 
+	for (auto& mantis : mantises) {
+		mantis->Update(deltaTime);
+	}
+
 	camera->position = caterpillar.position;
 }
 
@@ -83,6 +109,10 @@ void Level1::Render(Renderer& renderer) {
 
 	for (auto& leaf : leaves) {
 		leaf->Draw(renderer);
+	}
+
+	for (auto& mantis : mantises) {
+		mantis->Draw(renderer);
 	}
 
 	Physics::DebugDraw(renderer);

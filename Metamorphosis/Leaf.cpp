@@ -37,6 +37,6 @@ void Leaf::Update(float deltaTime) {
 
 
 void Leaf::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Leaf.png"], position, sf::Vector2f(16.0, 8.0f));
+	renderer.Draw(Resources::textures["Leaf.png"], position, sf::Vector2f(20.0, 12.0f));
 
 }

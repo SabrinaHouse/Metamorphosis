@@ -73,7 +73,7 @@ void Caterpillar::Update(float deltaTime) {
 }
 
 void Caterpillar::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Caterpillar.png"], position, sf::Vector2f(30.0, 15.0f));
+	renderer.Draw(Resources::textures["Caterpillar.png"], position, sf::Vector2f(40, 25));
 
 }
 
