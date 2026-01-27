@@ -1,10 +1,14 @@
 #include "Leaf.h"
 #include "Resources.h"
 
+Leaf::~Leaf() {
+	Physics::world->DestroyBody(body);
+}
 
 void Leaf::Begin() {
 	FixtureData* fixtureData = new FixtureData();
 	fixtureData->type = FixtureDataType::Leaf;
+	fixtureData->leaf = this;
 
 	//box 2d body for collisions
 	b2BodyDef bodyDef{};
@@ -22,6 +26,9 @@ void Leaf::Begin() {
 	fixtureDef.isSensor = true;
 	fixtureDef.userData = fixtureData;
 	body->CreateFixture(&fixtureDef);
+
+	//value for if to delete or not
+	eaten = false;
 }
 
 void Leaf::Update(float deltaTime) {

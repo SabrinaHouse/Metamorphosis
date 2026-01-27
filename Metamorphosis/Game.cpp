@@ -62,7 +62,6 @@ void Game::Update(float deltaTime)
 		}
 		break;
 	case 3:
-		LevelComplete = false;
 		break;
 	}
 }
@@ -79,7 +78,6 @@ void Game::Render(Renderer& renderer)
 		level3.Render(renderer);
 		break;
 	case 3:
-		LevelComplete = false;
 		break;
 	}
 }

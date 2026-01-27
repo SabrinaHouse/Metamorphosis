@@ -15,8 +15,12 @@ public:
 	void Update(float deltaTime);
 	void Render(Renderer& renderer);
 
+	void CreateMap(std::vector<std::vector<int>> map);
+
 	Camera *camera;
 
 	bool stageComplete = false;
 };
+
+void DeleteLeaf(Leaf* leaf);
 

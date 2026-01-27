@@ -25,16 +25,16 @@ MAP KEY:
 3 = Finish
 */
 
-//std::vector<int> map = { 0 , 1 , 2, 1 , 0 , 0, 1, 2, 2, 0, 1, 3};
-std::vector<int> map = { 0 , 1, 3 };
+std::vector<int> map = { 0 , 1 , 2, 1 , 0 , 0, 1, 2, 2, 0, 1, 3};
+//std::vector<int> map = { 0 , 1 , 1, 3 };
 
 float bottomEdge;
 float topEdge;
 
 
 void Level3::Restart() {
-	bottomEdge = butterfly.position.y + (camera->getViewSize().y / 2);
-	topEdge = butterfly.position.y - (camera->getViewSize().y / 2);
+	bottomEdge = (camera->getViewSize().y / 2);
+	topEdge =  -(camera->getViewSize().y / 2);
 
 	Physics::Init();
 	butterfly.position = sf::Vector2f(0, 0);
@@ -52,27 +52,30 @@ void Level3::Restart() {
 
 
 		//change where the bush is based on the layout vector
-		//make switch case if ur bored one day
 		switch (map[i]) {
 		case 0:
+			//middle
 			bush.position.y = bottomEdge - 5;
 			bush.Begin();
 			vine.position.y = topEdge + 5;
 			vine.Begin();
 			break;
 		case 1:
+			//low
 			bush.position.y = bottomEdge + 20;
 			bush.Begin();
 			vine.position.y = topEdge + 30;
 			vine.Begin();
 			break;
 		case 2:
+			//high
 			bush.position.y = bottomEdge - 30;
 			bush.Begin();
 			vine.position.y = topEdge - 20;
 			vine.Begin();
 			break;
 		case 3:
+			//win
 			flower.position.x = (200 * i) + 150;
 			flower.position.y = bottomEdge;
 			flower.Begin();
@@ -83,6 +86,7 @@ void Level3::Restart() {
 }
 
 void Level3::Begin(const sf::Window& window) {
+	
 	Restart();
 }
 
@@ -90,23 +94,28 @@ void Level3::Update(float deltaTime) {
 	Physics::Update(deltaTime);
 	butterfly.Update(deltaTime);
 
+	//make the camera stop moving with the player when they reach the end
 	if (butterfly.position.x < flower.position.x - 100) {
 		camera->position.x = butterfly.position.x;
 	}
 
+	//playerr dies if they hit a bush or vine OR if they go off screen
 	if (butterfly.collided) {
 		Restart();
-	}
-	if (butterfly.onFlower)
-	{
-		stageComplete = true;
 	}
 	if (butterfly.position.y > bottomEdge || butterfly.position.y < topEdge) {
 		Restart();
 	}
+	//player wins when they land on flower
+	if (butterfly.onFlower)
+	{
+		stageComplete = true;
+	}
+	
 }
 
 void Level3::Render(Renderer& renderer) {
+	//make the sky stop moving when the camera does
 	float skyPositionX;
 	if (butterfly.position.x < flower.position.x - 100) {
 		skyPositionX = butterfly.position.x;
@@ -127,24 +136,28 @@ void Level3::Render(Renderer& renderer) {
 		//change where the bush is based on the layout vector
 		switch (map[i]) {
 		case 0:
+			//middle
 			bush.position.y = bottomEdge - 5;
 			bush.Draw(renderer);
 			vine.position.y = topEdge + 5;
 			vine.Draw(renderer);
 			break;
 		case 1:
+			//low
 			bush.position.y = bottomEdge + 20;
 			bush.Draw(renderer); 
 			vine.position.y = topEdge + 30;
 			vine.Draw(renderer);
 			break;
 		case 2:
+			//high
 			bush.position.y = bottomEdge - 30;
 			bush.Draw(renderer);
 			vine.position.y = topEdge - 20;
 			vine.Draw(renderer);
 			break;
 		case 3:
+			//win
 			flower.position.x = (200 * i) + 150;
 			flower.position.y = bottomEdge;
 			flower.Draw(renderer);
@@ -155,5 +168,5 @@ void Level3::Render(Renderer& renderer) {
 
 	}
 
-	Physics::DebugDraw(renderer);
+	//Physics::DebugDraw(renderer);
 }

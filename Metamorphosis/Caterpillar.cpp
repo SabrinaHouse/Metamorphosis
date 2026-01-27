@@ -6,7 +6,6 @@
 #include <iostream>
 
 constexpr float M_PI = 22.0 / 7.0;
-Leaf* leaf;
 
 void Caterpillar::Begin() {
 	//tagging with the correct listeners
@@ -71,8 +70,6 @@ void Caterpillar::Update(float deltaTime) {
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y); 
 
-	
-
 }
 
 void Caterpillar::Draw(Renderer& renderer) {
@@ -83,8 +80,7 @@ void Caterpillar::Draw(Renderer& renderer) {
 void Caterpillar::OnBeginContact(b2Fixture* other) {
 	FixtureData* data = (FixtureData*)other->GetUserData();
 	if (data && data->type == FixtureDataType::Leaf) {
-		eatenLeaves++;
-		std::cout << eatenLeaves << std::endl;
+		data->leaf->eaten = true;
 	}
 }
 
