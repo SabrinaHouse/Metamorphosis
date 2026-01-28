@@ -1,4 +1,5 @@
 #include "Mantis.h"
+#include <iostream>
 sf::Clock mantisClock;
 
 void Mantis::Begin() {
@@ -33,27 +34,36 @@ void Mantis::Update(float deltaTime) {
 	velocity.x = 0;
 	velocity.y = 0;
 
-	int movementSpeed = 20;
-
+	//change only x velocity if left/right mantis
 	if (LeftToRight) {
-		velocity.x += movementSpeed;
-	}
-	else {
-		velocity.y += movementSpeed;
+		//change the direction the mantis is moving
+		if (flipped) {
+			velocity.x -= movementSpeed;
 
-	}
-
-	if (mantisClock.getElapsedTime().asSeconds() > 3) {
-		if (LeftToRight) {
-			velocity.x = velocity.x * -1;
 		}
 		else {
-			velocity.y = velocity.y * -1;
+			velocity.x += movementSpeed;
 		}
+	}
+	//change only y velocity if up/down mantis
+	else {
+		//change the direction the mantis is moving
+		if (flipped) {
+			velocity.y -= movementSpeed;
 
+		}
+		else {
+			velocity.y += movementSpeed;
+		}
+	}
+	
+	if (mantisClock.getElapsedTime().asSeconds() > 5) {
+		//change direction after 5 seconds
+		flipped = !flipped;
 		mantisClock.restart();
 	}
 
+	std::cout << mantisClock.getElapsedTime().asSeconds() << std::endl;
 
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);

@@ -32,8 +32,8 @@ std::vector<std::vector<int>>
 map = {
 	{2, 0, 3, 0, 2},
 	{0, 0, 0, 0, 0},
-	{4, 0, 1, 0, 4},
-	{0, 0, 0, 0, 0},
+	{0, 0, 1, 0, 0},
+	{0, 0, 0, 4, 0},
 	{2, 0, 3, 0, 2}
 };
 
@@ -54,12 +54,26 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 			}
 			else if (map[i][j] == 3) {
 				mantis = new Mantis();
+
+				//randomly decide which direccted the mantis will start moving in
+				int coinFlip = (rand() % 2);
+				if (coinFlip == 1) {
+					mantis->flipped = true;
+				}
+
 				mantis->LeftToRight = true;
 				mantis->position = sf::Vector2f(j * distance, i * distance);
 				mantises.push_back(mantis);
 			}
 			else if (map[i][j] == 4) {
 				mantis = new Mantis();
+
+				//randomly decide which direccted the mantis will start moving in
+				int coinFlip = (rand() % 2);
+				if (coinFlip == 1) {
+					mantis->flipped = true;
+				}
+
 				mantis->LeftToRight = false;
 				mantis->position = sf::Vector2f(j * distance, i * distance);
 				mantises.push_back(mantis);

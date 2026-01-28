@@ -12,9 +12,15 @@ public:
 
 	sf::Vector2f position{};
 	bool LeftToRight;
+	bool flipped = false;
+	sf::Clock mantisClock;
+	float angle;
+
 
 private:
 	b2Body* body;
+	int movementSpeed = 40;
+
 };
 
 
