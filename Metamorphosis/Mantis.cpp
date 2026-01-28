@@ -63,7 +63,7 @@ void Mantis::Update(float deltaTime) {
 		mantisClock.restart();
 	}
 
-	std::cout << mantisClock.getElapsedTime().asSeconds() << std::endl;
+	//std::cout << mantisClock.getElapsedTime().asSeconds() << std::endl;
 
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);

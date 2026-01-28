@@ -15,6 +15,7 @@ public:
 	virtual void OnEndContact(b2Fixture* other) override;
 
 	int eatenLeaves;
+	bool hitMantis;
 	sf::Vector2f position{};
 
 private:

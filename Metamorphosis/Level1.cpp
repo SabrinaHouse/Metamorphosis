@@ -18,6 +18,7 @@ Mantis* mantis;
 std::vector<Leaf*> leaves;
 std::vector<Mantis*> mantises;
 
+int coinFlip;
 
 /*
 MAP KEY
@@ -44,19 +45,25 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 	for (int i = 0; i < map.size(); i++) {
 
 		for (int j = 0; j < map[i].size(); j++) {
-			if (map[i][j] == 1) {
+			switch (map[i][j]) {
+			case 0:
+				break;
+
+			case 1:
 				caterpillar.position = sf::Vector2f(j * distance, i * distance);
-			}
-			else if (map[i][j] == 2) {
+				break;
+
+			case 2:
 				leaf = new Leaf();
 				leaf->position = sf::Vector2f(j * distance, i * distance);
 				leaves.push_back(leaf);
-			}
-			else if (map[i][j] == 3) {
+				break;
+
+			case 3:
 				mantis = new Mantis();
 
 				//randomly decide which direccted the mantis will start moving in
-				int coinFlip = (rand() % 2);
+				coinFlip = (rand() % 2);
 				if (coinFlip == 1) {
 					mantis->flipped = true;
 				}
@@ -64,12 +71,13 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 				mantis->LeftToRight = true;
 				mantis->position = sf::Vector2f(j * distance, i * distance);
 				mantises.push_back(mantis);
-			}
-			else if (map[i][j] == 4) {
+				break;
+
+			case 4:
 				mantis = new Mantis();
 
 				//randomly decide which direccted the mantis will start moving in
-				int coinFlip = (rand() % 2);
+				coinFlip = (rand() % 2);
 				if (coinFlip == 1) {
 					mantis->flipped = true;
 				}
@@ -77,6 +85,7 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 				mantis->LeftToRight = false;
 				mantis->position = sf::Vector2f(j * distance, i * distance);
 				mantises.push_back(mantis);
+				break;
 			}
 		}
 
@@ -84,7 +93,7 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 }
 
 
-void Level1::Begin(const sf::Window& window) {
+void Level1::Restart() {
 	Physics::Init();
 
 	CreateMap(map);
@@ -98,6 +107,11 @@ void Level1::Begin(const sf::Window& window) {
 		mantis->Begin();
 	}
 }
+
+void Level1::Begin(const sf::Window& window) {
+	Restart();
+}
+
 void Level1::Update(float deltaTime) {
 	Physics::Update(deltaTime);
 
@@ -113,6 +127,13 @@ void Level1::Update(float deltaTime) {
 
 	for (auto& mantis : mantises) {
 		mantis->Update(deltaTime);
+	}
+
+	if (caterpillar.hitMantis == true) {
+		//ensure mantises and leaves dont stack between deaths
+		leaves.clear();
+		mantises.clear();
+		Restart();
 	}
 
 	camera->position = caterpillar.position;
@@ -131,7 +152,7 @@ void Level1::Render(Renderer& renderer) {
 
 	Physics::DebugDraw(renderer);
 
-	if (caterpillar.eatenLeaves >= 10) {
+	if (caterpillar.eatenLeaves >= 4) {
 		stageComplete = true;
 	}
 }

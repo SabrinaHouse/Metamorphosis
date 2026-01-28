@@ -38,6 +38,7 @@ void Caterpillar::Begin() {
 	body->CreateFixture(&fixtureDef); 
 
 	eatenLeaves = 0;
+	hitMantis = false;
 }
 
 void Caterpillar::Update(float deltaTime) {
@@ -81,6 +82,10 @@ void Caterpillar::OnBeginContact(b2Fixture* other) {
 	FixtureData* data = (FixtureData*)other->GetUserData();
 	if (data && data->type == FixtureDataType::Leaf) {
 		data->leaf->eaten = true;
+	}
+
+	if (data && data->type == FixtureDataType::Mantis) {
+		hitMantis = true;
 	}
 }
 
