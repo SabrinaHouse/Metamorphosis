@@ -41,6 +41,7 @@ void Level3::Restart() {
 	Physics::Init();
 	butterfly.position = sf::Vector2f(0, 0);
 	butterfly.collided = false;
+	butterfly.onFlower = false;
 	butterfly.Begin();
 
 	camera->position = sf::Vector2f(0, 0);

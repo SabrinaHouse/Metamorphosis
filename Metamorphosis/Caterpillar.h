@@ -20,5 +20,5 @@ public:
 
 private:
 	b2Body* body;
-	float movementSpeed = 70;
+	float movementSpeed = 80;
 };

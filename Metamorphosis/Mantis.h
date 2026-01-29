@@ -19,7 +19,7 @@ public:
 
 private:
 	b2Body* body;
-	int movementSpeed = 40;
+	int movementSpeed = 60;
 
 };
 

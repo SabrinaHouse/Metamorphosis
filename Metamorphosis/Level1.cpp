@@ -30,9 +30,13 @@ MAP KEY
 2 = Leaf
 3 = Left/Right moving Mantis
 4 = Up/Down moving Mantis
+5 = top/bottom boarder
+6 = side boarder
+7 = corner boarder
 */
 
-std::vector<std::vector<int>> 
+/*
+* std::vector<std::vector<int>> 
 map = {
 	{7, 5, 5, 5, 5, 5, 7},
 	{6, 2, 0, 3, 0, 2, 6},
@@ -42,6 +46,23 @@ map = {
 	{6, 2, 0, 3, 0, 2, 6},
 	{7, 5, 5, 5, 5, 5, 7}
 };
+*/
+
+std::vector<std::vector<int>>
+map = {
+	{7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7},
+	{6, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 6},
+	{6, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 6},
+	{6, 4, 0, 0, 0, 0, 2, 0, 3, 4, 0, 6},
+	{6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6},
+	{6, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 6},
+	{6, 0, 0, 4, 0, 0, 0, 4, 3, 0, 0, 6},
+	{6, 0, 2, 0, 0, 0, 0, 0, 0, 2, 4, 6},
+	{6, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 6},
+	{6, 2, 0, 0, 0, 0, 0, 3, 2, 0, 0, 6},
+	{7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ,7}
+};
+
 
 void Level1::CreateMap(std::vector<std::vector<int>> map) {
 	//How far away each item will be from each other
@@ -188,7 +209,7 @@ void Level1::Render(Renderer& renderer) {
 
 	Physics::DebugDraw(renderer);
 
-	if (caterpillar.eatenLeaves >= 4) {
+	if (caterpillar.eatenLeaves >= 10) {
 		stageComplete = true;
 	}
 

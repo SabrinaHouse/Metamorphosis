@@ -2,6 +2,7 @@
 #include <iostream>
 sf::Clock mantisClock;
 
+
 void Mantis::Begin() {
 	mantisClock.start();
 
@@ -56,9 +57,11 @@ void Mantis::Update(float deltaTime) {
 			velocity.y += movementSpeed;
 		}
 	}
-	
-	if (mantisClock.getElapsedTime().asSeconds() > 5) {
+
+	if (mantisClock.getElapsedTime().asSeconds() > (rand() % 3) + 2 
+		|| position.x < 0 || position.x > 550 || position.y < 0 || position.y > 550) {
 		//change direction after 5 seconds
+		//or if the mantis hits the barrier
 		flipped = !flipped;
 		mantisClock.restart();
 	}

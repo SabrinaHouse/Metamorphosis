@@ -41,6 +41,7 @@ void Level2::Restart() {
 
 	chrysalis.position = sf::Vector2f(0, 0);
 	chrysalis.hitBranch = false;
+	chrysalis.hitGround = false;
 	chrysalis.Begin();
 
 	for (int i = 0; i < layout.size(); i++)
