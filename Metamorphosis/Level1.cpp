@@ -10,13 +10,16 @@
 #include "Caterpillar.h"
 #include "Leaf.h"
 #include "Mantis.h"
+#include "Boarder.h"
 
 Caterpillar caterpillar;
 Leaf* leaf;
 Mantis* mantis;
+Boarder* boarder;
 
 std::vector<Leaf*> leaves;
 std::vector<Mantis*> mantises;
+std::vector<Boarder*> boarders;
 
 int coinFlip;
 
@@ -31,11 +34,13 @@ MAP KEY
 
 std::vector<std::vector<int>> 
 map = {
-	{2, 0, 3, 0, 2},
-	{0, 0, 0, 0, 0},
-	{0, 0, 1, 0, 0},
-	{0, 0, 0, 4, 0},
-	{2, 0, 3, 0, 2}
+	{7, 5, 5, 5, 5, 5, 7},
+	{6, 2, 0, 3, 0, 2, 6},
+	{6, 0, 0, 0, 0, 0, 6},
+	{6, 0, 0, 1, 0, 0, 6},
+	{6, 0, 0, 0, 4, 0, 6},
+	{6, 2, 0, 3, 0, 2, 6},
+	{7, 5, 5, 5, 5, 5, 7}
 };
 
 void Level1::CreateMap(std::vector<std::vector<int>> map) {
@@ -86,14 +91,37 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 				mantis->position = sf::Vector2f(j * distance, i * distance);
 				mantises.push_back(mantis);
 				break;
+			case 5:
+				boarder = new Boarder();
+				boarder->typeOfBoarder = 0;
+				boarder->position = sf::Vector2f(j * distance, i * distance);
+				boarders.push_back(boarder);
+				break;
+			case 6:
+				boarder = new Boarder();
+				boarder->typeOfBoarder = 1;
+				boarder->position = sf::Vector2f(j * distance, i * distance);
+				boarders.push_back(boarder);
+				break;
+			case 7:
+				boarder = new Boarder();
+				boarder->typeOfBoarder = 2;
+				boarder->position = sf::Vector2f(j * distance, i * distance);
+				boarders.push_back(boarder);
+				break;
 			}
 		}
 
 	}
 }
 
-
 void Level1::Restart() {
+	stageComplete = false;
+
+	leaves.clear();
+	mantises.clear();
+	boarders.clear();
+
 	Physics::Init();
 
 	CreateMap(map);
@@ -105,6 +133,10 @@ void Level1::Restart() {
 
 	for (auto& mantis : mantises) {
 		mantis->Begin();
+	}
+
+	for (auto& boarder : boarders) {
+		boarder->Begin();
 	}
 }
 
@@ -131,8 +163,6 @@ void Level1::Update(float deltaTime) {
 
 	if (caterpillar.hitMantis == true) {
 		//ensure mantises and leaves dont stack between deaths
-		leaves.clear();
-		mantises.clear();
 		Restart();
 	}
 
@@ -148,6 +178,10 @@ void Level1::Render(Renderer& renderer) {
 
 	for (auto& mantis : mantises) {
 		mantis->Draw(renderer);
+	}
+
+	for (auto& boarder : boarders) {
+		boarder->Draw(renderer);
 	}
 
 	Physics::DebugDraw(renderer);

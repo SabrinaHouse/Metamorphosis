@@ -60,6 +60,7 @@ void Chrysalis::Update(float deltaTime) {
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
 
 }
+
 void Chrysalis::Draw(Renderer& renderer) {
 	renderer.Draw(Resources::textures["Chrysalis.png"], position, sf::Vector2f(facingLeft ? -15.0f : 15.0, 15.0f));
 }

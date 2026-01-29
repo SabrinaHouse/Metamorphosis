@@ -33,6 +33,8 @@ float topEdge;
 
 
 void Level3::Restart() {
+	stageComplete = false;
+
 	bottomEdge = (camera->getViewSize().y / 2);
 	topEdge =  -(camera->getViewSize().y / 2);
 
@@ -168,5 +170,5 @@ void Level3::Render(Renderer& renderer) {
 
 	}
 
-	//Physics::DebugDraw(renderer);
+	Physics::DebugDraw(renderer);
 }

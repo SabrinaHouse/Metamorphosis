@@ -9,7 +9,6 @@ Level1 level1(camera);
 Level2 level2(camera);
 Level3 level3(camera);
 
-
 void Game::Begin(const sf::Window& window)
 {
 
@@ -65,6 +64,7 @@ void Game::Update(float deltaTime)
 		break;
 	}
 }
+
 void Game::Render(Renderer& renderer)
 {
 	switch (CurrentLevel()) {

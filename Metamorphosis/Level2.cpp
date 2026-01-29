@@ -35,6 +35,8 @@ int rightEdge;
 int leftEdge;
 
 void Level2::Restart() {
+	stageComplete = false;
+
 	Physics::Init(); 
 
 	chrysalis.position = sf::Vector2f(0, 0);
@@ -96,6 +98,7 @@ void Level2::Begin(const sf::Window& window) {
 
 	Restart();
 }
+
 void Level2::Update(float deltaTime) {
 	Physics::Update(deltaTime);
 	chrysalis.Update(deltaTime);

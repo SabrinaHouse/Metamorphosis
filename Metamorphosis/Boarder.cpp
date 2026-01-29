@@ -1,5 +1,6 @@
 #include "Boarder.h"
 #include "Resources.h"
+#include "Levels.h"
 
 void Boarder::Begin() {
 	b2BodyDef bodyDef{};
@@ -11,15 +12,38 @@ void Boarder::Begin() {
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(20, 200);
+	if (CurrentLevel() == 0) {
+		polygonShape.SetAsBox(24, 24);
+	}
+	else {
+		polygonShape.SetAsBox(20, 200);
+	}
+
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 }
 
 void Boarder::Draw(Renderer& renderer) {
-	//draw the boarder on both sides at the same time
-	renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(-75, 250));
+	//check which kind of boarder should be drawn based on the level
+	if (CurrentLevel() == 0) {
+		switch (typeOfBoarder) {
+		case 0:
+			renderer.Draw(Resources::textures["TopBoarder.png"], position, sf::Vector2f(50, 50));
+			break;
+		case 1:
+			renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(50, 50));
+			break;
+		case 2:
+			renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(50, 50), 45.0f);
+			break;
+		}
+	}
+	else if (CurrentLevel() == 1) {
+		//draw the boarder on both sides at the same time
+		renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(-75, 250));
 
-	renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-position.x , position.y) , sf::Vector2f(75, 250));
+		renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-position.x, position.y), sf::Vector2f(75, 250));
+	}
+	
 
 }
