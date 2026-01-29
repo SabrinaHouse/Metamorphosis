@@ -43,7 +43,26 @@ sf::Clock jumpClock;
 
 void JuvenileButterfly::Update(float deltaTime) {
 	b2Vec2 velocity = body->GetLinearVelocity();
-	velocity.x = 30;
+
+	//velocity increases as the player gets further
+	if (position.x < 600) {
+		velocity.x = 30;
+	}
+	else if (position.x < 900) {
+		velocity.x = 40;
+	}
+	else if (position.x < 1200) {
+		velocity.x = 50;
+	}
+	else if (position.x < 1500) {
+		velocity.x = 60;
+	}
+	else if (position.x < 1800) {
+		velocity.x = 70;
+	}
+	else{
+		velocity.x = 80;
+	}
 
 	//jump
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) && jumpClock.getElapsedTime().asSeconds() >= 0.5f 
@@ -54,6 +73,8 @@ void JuvenileButterfly::Update(float deltaTime) {
 		jumpClock.restart();
 		//std::cout << std::to_string(position.x) << ", " << std::to_string(position.y) << std::endl;
 	}
+
+	std::cout << velocity.x << std::endl;
 
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);

@@ -52,7 +52,6 @@ void Level2::Restart() {
 		boarder.position.y = 150 * i;
 
 		//change where the branch is based on the layout vector
-		//make switch case if ur bored one day
 		if (layout[i] == 0) {
 			branch.position.x = leftEdge + 35;
 			branch.Begin();
