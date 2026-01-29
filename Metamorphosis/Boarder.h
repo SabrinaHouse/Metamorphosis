@@ -12,7 +12,7 @@ public:
 
 	int typeOfBoarder;
 	/*
-	decides what type of boarder to draw (only aplicable in level 1)
+	decides what type of boarder to draw (only applicable in level 1)
 
 	0 = top/bottom
 	1 = side
