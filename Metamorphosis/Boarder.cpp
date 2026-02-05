@@ -16,7 +16,7 @@ void Boarder::Begin() {
 		polygonShape.SetAsBox(24, 24);
 	}
 	else {
-		polygonShape.SetAsBox(20, 200);
+		polygonShape.SetAsBox(20, 75);
 	}
 
 	fixtureDef.shape = &polygonShape;
@@ -40,9 +40,9 @@ void Boarder::Draw(Renderer& renderer) {
 	}
 	else if (CurrentLevel() == 1) {
 		//draw the boarder on both sides at the same time
-		renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(-75, 250));
+		renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(-75, 150));
 
-		renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-position.x, position.y), sf::Vector2f(75, 250));
+		renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-position.x, position.y), sf::Vector2f(75, 150));
 	}
 	
 

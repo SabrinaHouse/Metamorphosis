@@ -138,6 +138,7 @@
     <ClCompile Include="Boarder.cpp" />
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="Bush.cpp" />
+    <ClCompile Include="Butterfly.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Caterpillar.cpp" />
     <ClCompile Include="Chrysalis.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="Level3.cpp" />
+    <ClCompile Include="Level4.cpp" />
     <ClCompile Include="Levels.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mantis.cpp" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Boarder.h" />
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Bush.h" />
+    <ClInclude Include="Butterfly.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Caterpillar.h" />
     <ClInclude Include="Chrysalis.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="Level1.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Level3.h" />
+    <ClInclude Include="Level4.h" />
     <ClInclude Include="Levels.h" />
     <ClInclude Include="Mantis.h" />
     <ClInclude Include="Physics.h" />

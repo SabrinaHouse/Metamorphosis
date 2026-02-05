@@ -44,6 +44,14 @@ void Level2::Restart() {
 	chrysalis.hitGround = false;
 	chrysalis.Begin();
 
+	//make the first boarders
+	boarder.position.x = leftEdge - 20;
+	boarder.position.y = -150;
+	boarder.Begin();
+
+	boarder.position.x = rightEdge + 20;
+	boarder.Begin();
+
 	for (int i = 0; i < layout.size(); i++)
 	{
 
@@ -118,6 +126,14 @@ void Level2::Render(Renderer& renderer) {
 
 	renderer.Draw(Resources::textures["Sky.png"], chrysalis.position, sf::Vector2f(camera->getViewSize().x * 1.5, camera->getViewSize().y * 1.5));
 	chrysalis.Draw(renderer);
+
+	//make the first boarders
+	boarder.position.x = leftEdge - 20;
+	boarder.position.y = -150;
+	boarder.Draw(renderer);
+
+	boarder.position.x = rightEdge + 20;
+	boarder.Draw(renderer);
 
 	for (int i = 0; i < layout.size(); i++)
 	{

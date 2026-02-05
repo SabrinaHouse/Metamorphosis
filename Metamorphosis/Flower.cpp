@@ -10,14 +10,14 @@ void Flower::Begin() {
 	//box 2d body for collisions
 	b2BodyDef bodyDef{};
 	bodyDef.type = b2_staticBody;
-	bodyDef.position.Set(position.x, position.y);
+	bodyDef.position.Set(position.x + 50, position.y);
 	bodyDef.fixedRotation = true;
 	body = Physics::world->CreateBody(&bodyDef);
 
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(45, 70);
+	polygonShape.SetAsBox(100, 70);
 	fixtureDef.shape = &polygonShape;
 	fixtureDef.isSensor = true;
 	fixtureDef.userData = fixtureData;

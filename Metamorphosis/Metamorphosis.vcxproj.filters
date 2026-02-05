@@ -31,11 +31,17 @@
     <Filter Include="Header Files\General">
       <UniqueIdentifier>{08e45571-688a-42fa-bea3-5540a71c3099}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\level3">
-      <UniqueIdentifier>{201e61a4-7ea5-4091-881a-640506c654ca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Level3">
       <UniqueIdentifier>{466d160a-2e5d-49d2-8e29-660bb1c91a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Level4">
+      <UniqueIdentifier>{068a4739-4be1-4566-831b-14945ff4b407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level4">
+      <UniqueIdentifier>{01a2626e-b32a-45ad-a0f4-fa870071c952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level3">
+      <UniqueIdentifier>{201e61a4-7ea5-4091-881a-640506c654ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,25 +88,31 @@
       <Filter>Source Files\General</Filter>
     </ClCompile>
     <ClCompile Include="Level3.cpp">
-      <Filter>Source Files\level3</Filter>
+      <Filter>Source Files\Level3</Filter>
     </ClCompile>
     <ClCompile Include="JuvenileButterfly.cpp">
-      <Filter>Source Files\level3</Filter>
+      <Filter>Source Files\Level3</Filter>
     </ClCompile>
     <ClCompile Include="Bush.cpp">
-      <Filter>Source Files\level3</Filter>
+      <Filter>Source Files\Level3</Filter>
     </ClCompile>
     <ClCompile Include="Vines.cpp">
-      <Filter>Source Files\level3</Filter>
+      <Filter>Source Files\Level3</Filter>
     </ClCompile>
     <ClCompile Include="Flower.cpp">
-      <Filter>Source Files\level3</Filter>
+      <Filter>Source Files\Level3</Filter>
     </ClCompile>
     <ClCompile Include="Mantis.cpp">
       <Filter>Source Files\Level1</Filter>
     </ClCompile>
     <ClCompile Include="Boarder.cpp">
       <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Butterfly.cpp">
+      <Filter>Source Files\Level4</Filter>
+    </ClCompile>
+    <ClCompile Include="Level4.cpp">
+      <Filter>Source Files\Level4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="Boarder.h">
       <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Butterfly.h">
+      <Filter>Header Files\Level4</Filter>
+    </ClInclude>
+    <ClInclude Include="Level4.h">
+      <Filter>Header Files\Level4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
