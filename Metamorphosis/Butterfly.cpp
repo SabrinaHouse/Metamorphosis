@@ -13,32 +13,53 @@ void Butterfly::Begin() {
 
 	//drawing a body for the player to apply physics and collisions
 	b2BodyDef bodyDef{};
-	bodyDef.type = b2_dynamicBody;
+	bodyDef.type = b2_staticBody;
 	bodyDef.position.Set(position.x, position.y);
-	bodyDef.fixedRotation = true;
+	bodyDef.fixedRotation = false;
 	body = Physics::world->CreateBody(&bodyDef);
 
 
 	b2FixtureDef fixtureDef{};
-	fixtureDef.density = 2;
-	fixtureDef.friction = 5;
+	fixtureDef.density = 0;
+	fixtureDef.friction = 0;
 	fixtureDef.userData = fixtureData;
 
+	//only needs a sensor hit box
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(8, 6);
-	fixtureDef.shape = &polygonShape;
-	body->SetGravityScale(5.0f);
-	body->CreateFixture(&fixtureDef);
-
-	//making the box that detects if the player has hit something
-	polygonShape.SetAsBox(8, 6);
+	polygonShape.SetAsBox(15, 6);
 	fixtureDef.isSensor = true;
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 }
 
 void Butterfly::Update(float deltaTime) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) //EAST
+	{
+		location = 1;
+		angle = 0.5f;
+	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) //WEST
+	{
+		location = 2;
+		angle = 0.5f;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) //NORTH
+	{
+		location = 3;
+		angle = 0;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) //SOUTH
+	{
+		location = 4;
+		angle = 0;
+	}
+
+	bodyPosition = { position.x, position.y };
+
+	body->SetTransform(bodyPosition, angle * b2_pi);
 }
 
 void Butterfly::Draw(Renderer& renderer) {

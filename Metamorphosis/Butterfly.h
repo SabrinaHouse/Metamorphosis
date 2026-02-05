@@ -15,6 +15,9 @@ public:
 	virtual void OnEndContact(b2Fixture* other) override;
 
 	sf::Vector2f position{};
+	b2Vec2 bodyPosition = { position.x, position.y };
+	int location = 3; //default position is North
+	float32 angle;
 
 private:
 	b2Body* body{};
