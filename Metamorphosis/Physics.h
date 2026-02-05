@@ -17,6 +17,8 @@ class Bush;
 class Vines;
 class Flower;
 class Butterfly;
+class Eggs;
+class Wasp;
 
 
 class ContactListener
@@ -55,7 +57,9 @@ enum class FixtureDataType
 	Flower,
 
 	//lvl 4
-	Butterfly
+	Butterfly,
+	Eggs,
+	Wasp
 };
 
 struct FixtureData
@@ -93,6 +97,8 @@ struct FixtureData
 	union
 	{
 		Butterfly* butterfly;
+		Eggs* eggs;
+		Wasp* wasp;
 	};
 };
 
