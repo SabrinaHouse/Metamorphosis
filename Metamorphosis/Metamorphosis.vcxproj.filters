@@ -117,6 +117,9 @@
     <ClCompile Include="Eggs.cpp">
       <Filter>Source Files\Level4</Filter>
     </ClCompile>
+    <ClCompile Include="Wasp.cpp">
+      <Filter>Source Files\Level4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -189,6 +192,9 @@
       <Filter>Header Files\Level4</Filter>
     </ClInclude>
     <ClInclude Include="Eggs.h">
+      <Filter>Header Files\Level4</Filter>
+    </ClInclude>
+    <ClInclude Include="Wasp.h">
       <Filter>Header Files\Level4</Filter>
     </ClInclude>
   </ItemGroup>
