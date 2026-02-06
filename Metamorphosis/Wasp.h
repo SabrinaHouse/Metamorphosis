@@ -25,13 +25,15 @@ public:
 	//where it starts
 	bool TopOrLeft = true;
 
+	//find what the wasp hit
 	bool hitButterfly = false;
 	bool hitEggs = false;
 
+	int movementSpeed = 60;
+
 private:
 	b2Body* body{};
-	int movementSpeed = 60;
 };
 
-void DeleteWasp(Wasp* wasp);
+
 

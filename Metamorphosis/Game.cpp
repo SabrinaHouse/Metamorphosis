@@ -63,6 +63,9 @@ void Game::Update(float deltaTime)
 		}
 		break;
 	case 3:
+		if (level4.stageComplete) {
+			LevelComplete = true;
+		}
 		level4.Update(deltaTime);
 		break;
 	}

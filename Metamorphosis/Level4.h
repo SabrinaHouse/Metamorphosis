@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Renderer.h"
 #include "Camera.h"
+#include "Wasp.h"
 
 class Level4
 {
@@ -20,3 +21,4 @@ public:
 	bool stageComplete = false;
 };
 
+void DeleteWasp(Wasp* wasp);

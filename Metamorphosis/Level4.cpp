@@ -21,11 +21,15 @@ float32 eastEdge;
 //how far away the butterfly will be from the egg
 int eggDistance = 25;
 
-//how many total wasps have been spawned
+//how many total wasps have been spawned / despawned
 int spawnedWasps = 0;
+int despawnedWasps = 0; 
 
 //how long a was takes to spawn
-int waspTime = 2;
+float waspTime = 2;
+
+//wasp movement speed
+int waspSpeed = 60;
 
 /*
 WASP ORDER KEY:
@@ -35,12 +39,15 @@ WASP ORDER KEY:
 3 - Right
 */
 
-std::vector<int> waspOrder = { 0 , 1, 2, 3};
+std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 3, 1, 0, 2, 3, 1, 2, 3, 3, 1, 2, 0, 1, 3, 0, 2, 3, 0, 0, 0, 2, 2, 1, 0, 1 , 0 , 1, 0, 1, 1};
 
 void Level4::Restart() {
 	Physics::Init();
 
 	spawnedWasps = 0;
+	despawnedWasps = 0;
+	waspTime = 2;
+	waspSpeed = 60;
 
 	wasps.clear();
 
@@ -48,12 +55,16 @@ void Level4::Restart() {
 	butterfly.angle = 0;
 
 	butterfly.Begin();
-
 	eggs.Begin();
+
+	camera->position = eggs.position;
+
 }
 
 void Level4::Begin(const sf::Window& window) {
 	Physics::Init();
+
+	stageComplete = false;
 
 	sf::View cameraView = camera->getView(window.getSize());
 
@@ -90,7 +101,7 @@ void Level4::Update(float deltaTime) {
 		break;
 	}
 
-	if (waspClock.getElapsedTime().asSeconds() >= waspTime) {
+	if (waspClock.getElapsedTime().asSeconds() > waspTime) {
 		if (spawnedWasps < waspOrder.size()) {
 			wasp = new Wasp();
 			switch (waspOrder[spawnedWasps]) {
@@ -119,9 +130,13 @@ void Level4::Update(float deltaTime) {
 				wasp->startPosition = { eastEdge , 0 };
 				break;
 			}
+
 			wasps.push_back(wasp);
+			wasp->movementSpeed = waspSpeed;
 			wasp->Begin();
 			spawnedWasps++;
+			waspTime = waspTime - 0.055f;
+			waspSpeed = waspSpeed + 5;
 			waspClock.restart();
 		}
 		
@@ -132,13 +147,19 @@ void Level4::Update(float deltaTime) {
 
 		if (wasp->hitButterfly){
 			DeleteWasp(wasp);
-			std::cout << "wasp despawned" << std::endl;
+			despawnedWasps++;
+			//std::cout << "wasp despawned" << std::endl;
 		}else if (wasp->hitEggs) {
 			Restart();
 			DeleteWasp(wasp);
-			std::cout << "Die" << std::endl;
+			//std::cout << "Die" << std::endl;
 		}
 
+	}
+
+	if (despawnedWasps == waspOrder.size()) {
+		std::cout << "You Won!" << std::endl;
+		stageComplete = true;
 	}
 
 }
