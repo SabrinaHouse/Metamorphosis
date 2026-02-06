@@ -15,7 +15,7 @@ void Eggs::Begin() {
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(15, 15);
+	polygonShape.SetAsBox(10, 10);
 	fixtureDef.shape = &polygonShape;
 	fixtureDef.isSensor = true;
 	fixtureDef.userData = fixtureData;
@@ -23,6 +23,6 @@ void Eggs::Begin() {
 }
 
 void Eggs::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Eggs.png"], position, sf::Vector2f(30.0, 25.0f));
+	renderer.Draw(Resources::textures["Eggs.png"], position, sf::Vector2f(20.0, 20.0f));
 
 }

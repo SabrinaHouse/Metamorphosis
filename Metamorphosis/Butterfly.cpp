@@ -26,7 +26,7 @@ void Butterfly::Begin() {
 
 	//only needs a sensor hit box
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(15, 6);
+	polygonShape.SetAsBox(10, 6);
 	fixtureDef.isSensor = true;
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
