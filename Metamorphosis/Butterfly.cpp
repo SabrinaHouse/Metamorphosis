@@ -7,7 +7,6 @@
 void Butterfly::Begin() {
 	//tagging with the correct listeners
 	FixtureData* fixtureData = new FixtureData();
-	fixtureData->listener = this;
 	fixtureData->butterfly = this;
 	fixtureData->type = FixtureDataType::Butterfly;
 
@@ -64,13 +63,5 @@ void Butterfly::Update(float deltaTime) {
 
 void Butterfly::Draw(Renderer& renderer) {
 	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(20.0, 15.0f));
-
-}
-
-void Butterfly::OnBeginContact(b2Fixture* other) {
-
-}
-
-void Butterfly::OnEndContact(b2Fixture* other) {
 
 }

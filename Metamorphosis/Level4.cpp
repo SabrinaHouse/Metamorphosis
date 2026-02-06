@@ -24,6 +24,9 @@ int eggDistance = 25;
 //how many total wasps have been spawned
 int spawnedWasps = 0;
 
+//how long a was takes to spawn
+int waspTime = 2;
+
 /*
 WASP ORDER KEY:
 0 - Top
@@ -35,7 +38,18 @@ WASP ORDER KEY:
 std::vector<int> waspOrder = { 0 , 1, 2, 3};
 
 void Level4::Restart() {
+	Physics::Init();
 
+	spawnedWasps = 0;
+
+	wasps.clear();
+
+	butterfly.location = 3;
+	butterfly.angle = 0;
+
+	butterfly.Begin();
+
+	eggs.Begin();
 }
 
 void Level4::Begin(const sf::Window& window) {
@@ -48,14 +62,7 @@ void Level4::Begin(const sf::Window& window) {
 	westEdge =  -camera->getViewSize().y / 2;
 	eastEdge = camera->getViewSize().y / 2;
 
-	//std::cout << camera->getViewSize().y << std::endl;
-
-	butterfly.position.y = eggs.position.y - eggDistance;
-
-	butterfly.Begin();
-
-	eggs.Begin();
-
+	Restart();
 }
 
 void Level4::Update(float deltaTime) {
@@ -83,7 +90,7 @@ void Level4::Update(float deltaTime) {
 		break;
 	}
 
-	if (waspClock.getElapsedTime().asSeconds() >= 5) {
+	if (waspClock.getElapsedTime().asSeconds() >= waspTime) {
 		if (spawnedWasps < waspOrder.size()) {
 			wasp = new Wasp();
 			switch (waspOrder[spawnedWasps]) {
@@ -123,9 +130,13 @@ void Level4::Update(float deltaTime) {
 	for (auto& wasp : wasps) {
 		wasp->Update(deltaTime);
 
-		if (std::abs(wasp->position.y) > southEdge + 50 || std::abs(wasp->position.x) > eastEdge){
+		if (wasp->hitButterfly){
 			DeleteWasp(wasp);
 			std::cout << "wasp despawned" << std::endl;
+		}else if (wasp->hitEggs) {
+			Restart();
+			DeleteWasp(wasp);
+			std::cout << "Die" << std::endl;
 		}
 
 	}

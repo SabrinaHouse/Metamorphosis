@@ -8,6 +8,7 @@ Wasp::~Wasp() {
 void Wasp::Begin() {
 	FixtureData* fixtureData = new FixtureData();
 	fixtureData->type = FixtureDataType::Wasp;
+	fixtureData->listener = this;
 
 	//box 2d body for collisions
 	b2BodyDef bodyDef{};
@@ -64,4 +65,18 @@ void Wasp::Update(float deltaTime) {
 
 void Wasp::Draw(Renderer& renderer) {
 	renderer.Draw(Resources::textures["Wasp.png"], position, sf::Vector2f(10.0, 10.0f));
+}
+
+void Wasp::OnBeginContact(b2Fixture* other) {
+	FixtureData* data = (FixtureData*)other->GetUserData();
+	if (data && data->type == FixtureDataType::Eggs) {
+		hitEggs = true;
+	}
+	else if (data && data->type == FixtureDataType::Butterfly) {
+		hitButterfly = true;
+	}
+}
+
+void Wasp::OnEndContact(b2Fixture* other) {
+
 }

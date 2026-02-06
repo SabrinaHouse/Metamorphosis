@@ -4,6 +4,7 @@
 #include "Resources.h"
 
 class Wasp
+	: public ContactListener
 {
 public:
 	~Wasp();
@@ -11,6 +12,10 @@ public:
 	void Begin();
 	void Update(float deltaTime);
 	void Draw(Renderer& renderer);
+
+	//inherited from b2draw
+	virtual void OnBeginContact(b2Fixture* other) override;
+	virtual void OnEndContact(b2Fixture* other) override;
 
 	sf::Vector2f position{};
 	b2Vec2 startPosition = {0 , 0};
@@ -20,8 +25,11 @@ public:
 	//where it starts
 	bool TopOrLeft = true;
 
+	bool hitButterfly = false;
+	bool hitEggs = false;
+
 private:
-	b2Body* body;
+	b2Body* body{};
 	int movementSpeed = 60;
 };
 
