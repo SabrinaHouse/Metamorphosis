@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Renderer.h"
 #include "Camera.h"
+#include "Animation.h"
 
 class Level3
 {

@@ -28,15 +28,25 @@ void Boarder::Draw(Renderer& renderer) {
 	if (CurrentLevel() == 0) {
 		switch (typeOfBoarder) {
 		case 0:
-			renderer.Draw(Resources::textures["TopBoarder.png"], position, sf::Vector2f(50, 50));
+			renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(50, 50), sf::degrees(90));
 			break;
 		case 1:
 			renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(50, 50));
 			break;
 		case 2:
-			renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(50, 50), 45.0f);
+			renderer.Draw(Resources::textures["CornerBoarder.png"], position, sf::Vector2f(50, 50));
+			break;
+		case 3:
+			renderer.Draw(Resources::textures["CornerBoarder.png"], position, sf::Vector2f(50, 50), sf::degrees(90));
+			break;
+		case 4:
+			renderer.Draw(Resources::textures["CornerBoarder.png"], position, sf::Vector2f(50, 50), sf::degrees(180));
+			break;
+		case 5:
+			renderer.Draw(Resources::textures["CornerBoarder.png"], position, sf::Vector2f(50, 50), sf::degrees(270));
 			break;
 		}
+
 	}
 	else if (CurrentLevel() == 1) {
 		//draw the boarder on both sides at the same time

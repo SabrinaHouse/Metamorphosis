@@ -6,8 +6,17 @@
 #include <iostream>
 
 constexpr float M_PI = 22.0 / 7.0;
+sf::Angle angle;
+float32 bodyAngle;
 
 void Caterpillar::Begin() {
+
+	runAnimation = Animation(0.6f,
+		{
+			AnimFrame(0.3, Resources::textures["Caterpillar1.png"]),
+			AnimFrame(0.0, Resources::textures["Caterpillar2.png"]),
+		});
+
 	//tagging with the correct listeners
 	FixtureData* fixtureData = new FixtureData();
 	fixtureData->listener = this;
@@ -42,6 +51,8 @@ void Caterpillar::Begin() {
 }
 
 void Caterpillar::Update(float deltaTime) {
+	runAnimation.Update(deltaTime);
+
 	b2Vec2 velocity = body->GetLinearVelocity();
 	velocity.x = 0;
 	velocity.y = 0;
@@ -69,12 +80,45 @@ void Caterpillar::Update(float deltaTime) {
 	}
 
 	body->SetLinearVelocity(velocity);
-	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y); 
+
+	//cahnge which dirrection the body is facing based on what direction you are going
+	//play animation if you are moving
+	if (std::abs(velocity.y) > std::abs(velocity.x)) {
+		if (velocity.y < 0.02f) {
+			textureToDraw = runAnimation.GetTexture();
+			angle = sf::degrees(0);
+		}
+		else if (velocity.y > 0.02f) {
+			textureToDraw = runAnimation.GetTexture();
+			angle = sf::degrees(180);
+			
+		}
+		bodyAngle = 0.5 * b2_pi;
+
+	}
+	else if (std::abs(velocity.y) < std::abs(velocity.x) || (std::abs(velocity.y) == std::abs(velocity.x) && std::abs(velocity.y) !=0)) {
+		if (velocity.x > 0.02f) {
+			textureToDraw = runAnimation.GetTexture();
+			angle = sf::degrees(90);
+		}
+		else if (velocity.x < 0.02f) {
+			textureToDraw = runAnimation.GetTexture();
+			angle = sf::degrees(270);
+		}
+		bodyAngle = 0 * b2_pi;
+
+	} else {
+		textureToDraw = Resources::textures["Caterpillar1.png"];
+	}
+
+	body->SetTransform(body->GetPosition(), bodyAngle);
+
+	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
 
 }
 
 void Caterpillar::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Caterpillar.png"], position, sf::Vector2f(40, 25));
+	renderer.Draw(textureToDraw, position, sf::Vector2f(20, 35), angle);
 
 }
 

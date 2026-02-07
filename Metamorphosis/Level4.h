@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "Wasp.h"
+#include "Animation.h"
 
 class Level4
 {

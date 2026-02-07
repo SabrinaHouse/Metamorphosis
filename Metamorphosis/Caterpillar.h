@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Physics.h"
+#include "Animation.h"
+
 
 class Caterpillar
 	: public ContactListener
@@ -19,6 +21,9 @@ public:
 	sf::Vector2f position{};
 
 private:
+	sf::Texture textureToDraw{};
+	Animation runAnimation;
+
 	b2Body* body;
 	float movementSpeed = 80;
 };

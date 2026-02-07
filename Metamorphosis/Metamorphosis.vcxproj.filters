@@ -120,6 +120,9 @@
     <ClCompile Include="Wasp.cpp">
       <Filter>Source Files\Level4</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="Wasp.h">
       <Filter>Header Files\Level4</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

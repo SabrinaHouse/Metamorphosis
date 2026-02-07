@@ -20,6 +20,7 @@ public:
 	Camera *camera;
 
 	bool stageComplete = false;
+
 };
 
 void DeleteLeaf(Leaf* leaf);

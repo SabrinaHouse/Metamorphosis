@@ -50,7 +50,7 @@ map = {
 
 std::vector<std::vector<int>>
 map = {
-	{7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 7},
+	{7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 8},
 	{6, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 6},
 	{6, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 6},
 	{6, 4, 0, 0, 0, 0, 2, 0, 3, 4, 0, 6},
@@ -60,7 +60,7 @@ map = {
 	{6, 0, 2, 0, 0, 0, 0, 0, 0, 2, 4, 6},
 	{6, 0, 0, 3, 2, 0, 0, 0, 0, 0, 0, 6},
 	{6, 2, 0, 0, 0, 0, 0, 3, 2, 0, 0, 6},
-	{7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ,7}
+	{10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ,9}
 };
 
 
@@ -130,6 +130,24 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 				boarder->position = sf::Vector2f(j * distance, i * distance);
 				boarders.push_back(boarder);
 				break;
+			case 8:
+				boarder = new Boarder();
+				boarder->typeOfBoarder = 3;
+				boarder->position = sf::Vector2f(j * distance, i * distance);
+				boarders.push_back(boarder);
+				break;
+			case 9:
+				boarder = new Boarder();
+				boarder->typeOfBoarder = 4;
+				boarder->position = sf::Vector2f(j * distance, i * distance);
+				boarders.push_back(boarder);
+				break;
+			case 10:
+				boarder = new Boarder();
+				boarder->typeOfBoarder = 5;
+				boarder->position = sf::Vector2f(j * distance, i * distance);
+				boarders.push_back(boarder);
+				break;
 			}
 		}
 
@@ -173,7 +191,6 @@ void Level1::Update(float deltaTime) {
 	for (auto& leaf : leaves) {
 		if (leaf->eaten == true) {
 			caterpillar.eatenLeaves++;
-			std::cout << caterpillar.eatenLeaves << std::endl;
 			DeleteLeaf(leaf);
 		}
 	}
