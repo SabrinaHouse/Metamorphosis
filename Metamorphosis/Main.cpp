@@ -37,6 +37,8 @@ int main()
 
     while (window->isOpen())
     {
+        sf::View cameraView = camera.getView(window->getSize());
+
         float deltaTime = deltaClock.restart().asSeconds();
 
         while (const std::optional event = window->pollEvent())
@@ -157,6 +159,7 @@ int main()
        }
        else {
            window->clear();
+           renderer.Draw(Resources::textures["Sky.png"],(cameraView.getCenter()), sf::Vector2f(camera.getViewSize().x * 1.5, camera.getViewSize().y * 1.5));
            menu.updatePosition(camera, window);
            menu.draw(window, renderer);
        }

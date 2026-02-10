@@ -235,47 +235,47 @@ void Level1::Render(Renderer& renderer) {
 	switch (caterpillar.eatenLeaves) {
 	case 0:
 		renderer.Draw(Resources::textures["ProgressBar0.png"], 
-			{caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f)}, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f)}, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 1:
 		renderer.Draw(Resources::textures["ProgressBar1.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 2:
 		renderer.Draw(Resources::textures["ProgressBar2.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 3:
 		renderer.Draw(Resources::textures["ProgressBar3.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 4:
 		renderer.Draw(Resources::textures["ProgressBar4.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 5:
 		renderer.Draw(Resources::textures["ProgressBar5.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 6:
 		renderer.Draw(Resources::textures["ProgressBar6.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 7:
 		renderer.Draw(Resources::textures["ProgressBar7.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 8:
 		renderer.Draw(Resources::textures["ProgressBar8.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 9:
 		renderer.Draw(Resources::textures["ProgressBar9.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	case 10:
 		renderer.Draw(Resources::textures["ProgressBar10.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 10));
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 		break;
 	}
 }

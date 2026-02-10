@@ -35,25 +35,25 @@ void Wasp::Update(float deltaTime) {
 	velocity.x = 0;
 	velocity.y = 0;
 
+
 	if (horizontal) {
 		if (TopOrLeft) {
-			velocity.x += movementSpeed;
+			velocity.x += movementSpeed; //GOING EAST
 		}
 		else {
-			velocity.x -= movementSpeed;
+			velocity.x -= movementSpeed; //GOING WEST
 		}
 	}
 	else {
 		if (TopOrLeft) {
-			velocity.y += movementSpeed;
+			velocity.y += movementSpeed; //GOING SOUTH
 		}
 		else {
-			velocity.y -= movementSpeed;
+			velocity.y -= movementSpeed; //GOING NORTH
 		}
 	}
 
 	body->SetLinearVelocity(velocity);
-
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
 }
 

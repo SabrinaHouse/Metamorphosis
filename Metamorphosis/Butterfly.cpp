@@ -32,6 +32,7 @@ void Butterfly::Begin() {
 }
 
 void Butterfly::Update(float deltaTime) {
+	//Butterfly moves between 4 places
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) //EAST
 	{
 		location = 1;

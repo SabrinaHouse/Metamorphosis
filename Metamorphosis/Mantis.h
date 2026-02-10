@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Physics.h"
 #include "Resources.h"
+#include "Animation.h"
 
 class Mantis
 {
@@ -14,12 +15,13 @@ public:
 	bool LeftToRight;
 	bool flipped = false;
 	sf::Clock mantisClock;
-	float angle;
-
+	sf::Angle angle;
 
 private:
+	sf::Texture textureToDraw{};
 	b2Body* body;
 	int movementSpeed = 60;
+	Animation runAnimation;
 
 };
 

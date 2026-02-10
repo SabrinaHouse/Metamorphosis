@@ -39,7 +39,7 @@ WASP ORDER KEY:
 3 - Right
 */
 
-std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 3, 1, 0, 2, 3, 1, 2, 3, 3, 1, 2, 0, 1, 3, 0, 2, 3, 0, 0, 0, 2, 2, 1, 0, 1 , 0 , 1, 0, 1, 1};
+std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 3, 1, 0, 2, 3, 1, 2, 3, 3, 1, 2, 0, 2, 3, 0, 0, 0, 2, 2, 1, 0, 1, 0, 1, 0, 1, 1};
 
 void Level4::Restart() {
 	Physics::Init();
@@ -147,6 +147,7 @@ void Level4::Update(float deltaTime) {
 
 		if (wasp->hitButterfly){
 			DeleteWasp(wasp);
+			//count how many wasps have passed
 			despawnedWasps++;
 		}else if (wasp->hitEggs) {
 			Restart();
@@ -155,8 +156,8 @@ void Level4::Update(float deltaTime) {
 
 	}
 
+	//if you have passed all wasps, you win
 	if (despawnedWasps == waspOrder.size()) {
-		std::cout << "You Won!" << std::endl;
 		stageComplete = true;
 	}
 
@@ -169,6 +170,12 @@ void Level4::Render(Renderer& renderer) {
 	for (auto& wasp : wasps) {
 		wasp->Draw(renderer);
 	}
+
+	//add a boarder to make the viewable space a square
+	renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-camera->getViewSize().x / 2, 0), sf::Vector2f(150, camera->getViewSize().y));
+
+	renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(camera->getViewSize().x / 2, 0), sf::Vector2f(150, camera->getViewSize().y));
+
 
 	Physics::DebugDraw(renderer);
 }

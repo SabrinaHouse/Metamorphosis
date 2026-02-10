@@ -25,5 +25,4 @@ void Vines::Begin() {
 
 void Vines::Draw(Renderer& renderer) {
 	renderer.Draw(Resources::textures["HangingVines.png"], position, sf::Vector2f(100, 150));
-
 }

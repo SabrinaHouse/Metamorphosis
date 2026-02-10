@@ -71,8 +71,6 @@ void Game::Update(float deltaTime)
 		}
 		level4.Update(deltaTime);
 		break;
-	case 5:
-		break;
 	}
 }
 

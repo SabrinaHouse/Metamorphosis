@@ -2,9 +2,14 @@
 #include <iostream>
 sf::Clock mantisClock;
 
-
 void Mantis::Begin() {
 	mantisClock.start();
+
+	runAnimation = Animation(0.4f,
+		{
+			AnimFrame(0.2, Resources::textures["Mantis1.png"]),
+			AnimFrame(0.0, Resources::textures["Mantis2.png"]),
+		});
 
 	//tagging with the correct listener
 	FixtureData* fixtureData = new FixtureData();
@@ -20,7 +25,7 @@ void Mantis::Begin() {
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	polygonShape.SetAsBox(20, 15);
+	polygonShape.SetAsBox(15, 15);
 	fixtureDef.shape = &polygonShape;
 	fixtureDef.density = 0;
 	fixtureDef.friction = 0;
@@ -29,6 +34,7 @@ void Mantis::Begin() {
 }
 
 void Mantis::Update(float deltaTime) {
+	runAnimation.Update(deltaTime);
 
 	b2Vec2 velocity = body->GetLinearVelocity();
 	velocity.x = 0;
@@ -38,10 +44,11 @@ void Mantis::Update(float deltaTime) {
 	if (LeftToRight) {
 		//change the direction the mantis is moving
 		if (flipped) {
+			angle = sf::degrees(270);
 			velocity.x -= movementSpeed;
-
 		}
 		else {
+			angle = sf::degrees(90);
 			velocity.x += movementSpeed;
 		}
 	}
@@ -49,10 +56,12 @@ void Mantis::Update(float deltaTime) {
 	else {
 		//change the direction the mantis is moving
 		if (flipped) {
+			angle = sf::degrees(0);
 			velocity.y -= movementSpeed;
 
 		}
 		else {
+			angle = sf::degrees(180);
 			velocity.y += movementSpeed;
 		}
 	}
@@ -67,10 +76,12 @@ void Mantis::Update(float deltaTime) {
 
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
+	textureToDraw = runAnimation.GetTexture();
+
 
 }
 
 
 void Mantis::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Mantis.png"], position, sf::Vector2f(50, 40));
+	renderer.Draw(textureToDraw, position, sf::Vector2f(30, 40), angle);
 }
