@@ -35,6 +35,8 @@ void Game::Begin(const sf::Window& window)
 		LevelComplete = false;
 		level4.Begin(window);
 		break;
+	case 5:
+		break;
 	}
 
 }
@@ -69,6 +71,8 @@ void Game::Update(float deltaTime)
 		}
 		level4.Update(deltaTime);
 		break;
+	case 5:
+		break;
 	}
 }
 
@@ -88,6 +92,8 @@ void Game::Render(Renderer& renderer)
 		break;
 	case 4:
 		level4.Render(renderer);
+		break;
+	case 5:
 		break;
 	}
 }

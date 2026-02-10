@@ -42,7 +42,9 @@ void Menu::MainMenu(Camera camera, sf::RenderWindow* window) {
 		menu[i]->setPosition({ cameraView.getCenter().x, cameraView.getCenter().y + ((MAX_NUMBER_OF_ITEMS * 8) * (-1 + i)) - 20 });
 	}
 
-	menu[0]->setPosition({ cameraView.getCenter().x, cameraView.getCenter().y + ((MAX_NUMBER_OF_ITEMS * 8) * (-1)) - 30 });
+	if (!inLevelSelect) {
+		menu[0]->setPosition({ cameraView.getCenter().x, cameraView.getCenter().y + ((MAX_NUMBER_OF_ITEMS * 8) * (-1)) - 30 });
+	}
 
 }
 
@@ -58,18 +60,23 @@ void Menu::PauseScreen(Camera camera, sf::RenderWindow* window) {
 
 	inLevelSelect = false;
 
+	//reset strings to proper text and size
 	menu[0]->setString("Paused");
+	menu[0]->setCharacterSize(60);
+
 	menu[1]->setString("Resume");
+	menu[2]->setString("Quit");
 	menu[3]->setString("Level Select");
 
 
 	//set positions
+	
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		bounds = menu[i]->getLocalBounds();
 		menu[i]->setOrigin({ bounds.size.x / 2, bounds.size.y / 2 });
 		menu[i]->setPosition({ cameraView.getCenter().x, cameraView.getCenter().y + ((MAX_NUMBER_OF_ITEMS + 1) * (-1 + i)) - 4 });
 	}
-
+	
 }
 
 void Menu::DeathScreen(Camera camera, sf::RenderWindow* window) {
@@ -78,8 +85,12 @@ void Menu::DeathScreen(Camera camera, sf::RenderWindow* window) {
 
 	inLevelSelect = false;
 
+	//reset strings to proper text and size
 	menu[0]->setString("You Died!");
+	menu[0]->setCharacterSize(60);
+
 	menu[1]->setString("Try Again");
+	menu[2]->setString("Quit");
 	menu[3]->setString("Level Select");
 
 
@@ -92,13 +103,16 @@ void Menu::DeathScreen(Camera camera, sf::RenderWindow* window) {
 
 }
 
-void Menu::LevelSelectScreen(Camera camera, sf::RenderWindow* window, int currentLevel) {
+void Menu::LevelSelectScreen(Camera camera, sf::RenderWindow* window) {
 	sf::FloatRect bounds;
 	sf::View cameraView = camera.getView(window->getSize());
 
 	inLevelSelect = true;
 
+	//reset strings to proper text and size
 	menu[0]->setString("Caterpillar");
+	menu[0]->setCharacterSize(36);
+
 	menu[1]->setString("Chrysalis");
 	menu[2]->setString("Hatchling");
 	menu[3]->setString("Butterfly");
@@ -108,7 +122,7 @@ void Menu::LevelSelectScreen(Camera camera, sf::RenderWindow* window, int curren
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		bounds = menu[i]->getLocalBounds();
 		menu[i]->setOrigin({ bounds.size.x / 2, bounds.size.y / 2 });
-		menu[i]->setPosition({ cameraView.getCenter().x, cameraView.getCenter().y + ((MAX_NUMBER_OF_ITEMS + 1) * (-1 + i)) - 4 });
+		menu[i]->setPosition({ cameraView.getCenter().x, cameraView.getCenter().y + ((MAX_NUMBER_OF_ITEMS * 8) * (-1 + i)) - 20 });
 	}
 }
 
@@ -118,8 +132,12 @@ void Menu::FinalScreen(Camera camera, sf::RenderWindow* window) {
 
 	inLevelSelect = false;
 
+	//reset strings to proper text and size
 	menu[0]->setString("Metamorphosis");
+	menu[0]->setCharacterSize(36);
+
 	menu[1]->setString("Play Again");
+	menu[2]->setString("Quit");
 	menu[3]->setString("Level Select");
 
 
@@ -151,7 +169,7 @@ void Menu::draw(sf::RenderWindow* window, Renderer& renderer) {
 }
 
 void Menu::moveUp() {
-	if (selectedItemIndex - 1 > 0) {
+	if ((selectedItemIndex - 1 > 0 && !inLevelSelect) || (selectedItemIndex - 1 >= 0 && inLevelSelect)) {
 		menu[selectedItemIndex]->setFillColor(sf::Color::White);
 		selectedItemIndex--;
 		menu[selectedItemIndex]->setFillColor(sf::Color::Blue);

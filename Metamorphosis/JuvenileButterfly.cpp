@@ -73,8 +73,6 @@ void JuvenileButterfly::Update(float deltaTime) {
 		jumpClock.restart();
 	}
 
-	std::cout << velocity.x << std::endl;
-
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
 }

@@ -63,8 +63,8 @@ int main()
                     
                 }
 
-                if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape)) {
-                    //game.inMenu = !game.inMenu;
+                if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape) && CurrentLevel() != 0) {
+                    //pause or unpause the game
                     game.inMenu = !game.inMenu;
                     isPaused = !isPaused;
                     menu.PauseScreen(camera, window);
@@ -88,30 +88,54 @@ int main()
 
                 if (((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Enter) ||
                     (event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Space))) {
-                    switch (menu.getPressedItem()) {
-                    case 0:
-                        //title
-                        break;
-                    case 1:
-                        //unpause
-                        if (isPaused) {
-                            isPaused =  false;
+                    //select any level from any point
+                    if (menu.inLevelSelect) {
+                        switch (menu.getPressedItem()) {
+                        case 0:
+                            // lvl 1
+                            SelectLevel(1);
+                            break;
+                        case 1:
+                            //lvl 2
+                            SelectLevel(2);
+                            break;
+                        case 2:
+                            //lvl 3
+                            SelectLevel(3);
+                            break;
+                        case 3:
+                            //Lvl 4
+                            SelectLevel(4);
+                            break;
                         }
-                        //start the game
-                        else {
-                            game.LevelComplete = true;
+                        game.Begin(*window);
+                        game.inMenu = false;
+                    }
+                    else {
+                        switch (menu.getPressedItem()) {
+                        case 0:
+                            //title
+                            break;
+                        case 1:
+                            //unpause
+                            if (isPaused) {
+                                isPaused = false;
+                            }
+                            //start the game
+                            else {
+                                game.LevelComplete = true;
+                            }
+                            game.inMenu = false;
+                            break;
+                        case 2:
+                            //quit
+                            window->close();
+                            break;
+                        case 3:
+                            //level select
+                            menu.LevelSelectScreen(camera, window);
+                            break;
                         }
-                        game.inMenu = false;                        
-
-                        break;
-                    case 2:
-                        //quit
-                        window->close();
-                        break;
-                    case 3:
-                        //level select
-                        
-                        break;
                     }
                 }
             }
