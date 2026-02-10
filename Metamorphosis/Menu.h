@@ -17,17 +17,20 @@ public:
 	void MainMenu(Camera camera, sf::RenderWindow* window);
 	void PauseScreen(Camera camera, sf::RenderWindow* window);
 	void DeathScreen(Camera camera, sf::RenderWindow* window);
-	void LevelUpScreen(Camera camera, sf::RenderWindow* window, int currentLevel);
+	void LevelSelectScreen(Camera camera, sf::RenderWindow* window, int currentLevel);
 	void FinalScreen(Camera camera, sf::RenderWindow* window);
 
 	void draw(sf::RenderWindow* window, Renderer& renderer);
 	void updatePosition(Camera camera, sf::RenderWindow* window);
 	void moveUp();
 	void moveDown();
+
 	const int getPressedItem()
 	{
 		return selectedItemIndex;
 	}
+
+	bool inLevelSelect = false;
 
 private:
 	int selectedItemIndex;

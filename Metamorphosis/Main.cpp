@@ -8,6 +8,8 @@
 Game game;
 Menu menu;
 
+bool isPaused;
+
 int main()
 {
     //load files
@@ -60,6 +62,13 @@ int main()
 
                     
                 }
+
+                if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape)) {
+                    //game.inMenu = !game.inMenu;
+                    game.inMenu = !game.inMenu;
+                    isPaused = !isPaused;
+                    menu.PauseScreen(camera, window);
+                }
             }
 
             if (game.inMenu) {
@@ -84,10 +93,15 @@ int main()
                         //title
                         break;
                     case 1:
-                        
                         //unpause
-                        game.LevelComplete = true;
-                        game.inMenu = false;
+                        if (isPaused) {
+                            isPaused =  false;
+                        }
+                        //start the game
+                        else {
+                            game.LevelComplete = true;
+                        }
+                        game.inMenu = false;                        
 
                         break;
                     case 2:
