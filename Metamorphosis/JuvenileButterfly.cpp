@@ -71,7 +71,6 @@ void JuvenileButterfly::Update(float deltaTime) {
 	{
 		velocity.y -= jumpPower;
 		jumpClock.restart();
-		//std::cout << std::to_string(position.x) << ", " << std::to_string(position.y) << std::endl;
 	}
 
 	std::cout << velocity.x << std::endl;

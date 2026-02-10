@@ -148,11 +148,9 @@ void Level4::Update(float deltaTime) {
 		if (wasp->hitButterfly){
 			DeleteWasp(wasp);
 			despawnedWasps++;
-			//std::cout << "wasp despawned" << std::endl;
 		}else if (wasp->hitEggs) {
 			Restart();
 			DeleteWasp(wasp);
-			//std::cout << "Die" << std::endl;
 		}
 
 	}

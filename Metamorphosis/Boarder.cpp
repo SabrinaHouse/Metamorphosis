@@ -12,7 +12,7 @@ void Boarder::Begin() {
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
-	if (CurrentLevel() == 0) {
+	if (CurrentLevel() == 1) {
 		polygonShape.SetAsBox(24, 24);
 	}
 	else {
@@ -25,7 +25,7 @@ void Boarder::Begin() {
 
 void Boarder::Draw(Renderer& renderer) {
 	//check which kind of boarder should be drawn based on the level
-	if (CurrentLevel() == 0) {
+	if (CurrentLevel() == 1) {
 		switch (typeOfBoarder) {
 		case 0:
 			renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(50, 50), sf::degrees(90));
@@ -48,7 +48,7 @@ void Boarder::Draw(Renderer& renderer) {
 		}
 
 	}
-	else if (CurrentLevel() == 1) {
+	else if (CurrentLevel() == 2) {
 		//draw the boarder on both sides at the same time
 		renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(-75, 150));
 

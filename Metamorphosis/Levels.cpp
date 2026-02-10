@@ -2,10 +2,19 @@
 #include <iostream>
 
 int currentLevel = 0;
-int maxLevel = 4;
+int maxLevel = 5;
 
 void ChangeLevels() {
-	currentLevel = (currentLevel + 1) % maxLevel;
+	if (currentLevel + 1 < maxLevel) {
+		currentLevel = currentLevel + 1;
+	}
+	else if (currentLevel + 1 == maxLevel) {
+		currentLevel = 0;
+	}
+}
+
+void SelectLevel(int chosenLevel) {
+	currentLevel = chosenLevel;
 }
 
 int CurrentLevel() {

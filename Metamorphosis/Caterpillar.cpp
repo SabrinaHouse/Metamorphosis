@@ -61,22 +61,18 @@ void Caterpillar::Update(float deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) //right
 	{
 		velocity.x += movementSpeed;
-		//facingLeft = false;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) //left
 	{
 		velocity.x -= movementSpeed;
-		//facingLeft = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) //up
 	{
 		velocity.y -= movementSpeed;
-		//facingForward = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::S )|| sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) //down
 	{
 		velocity.y += movementSpeed;
-		//facingForward = false;
 	}
 
 	body->SetLinearVelocity(velocity);

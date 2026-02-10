@@ -123,6 +123,9 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -201,6 +204,9 @@
       <Filter>Header Files\Level4</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>

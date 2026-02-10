@@ -15,7 +15,6 @@ void Mantis::Begin() {
 	bodyDef.type = b2_kinematicBody;
 	bodyDef.position.Set(position.x, position.y);
 	bodyDef.fixedRotation = true;
-	//bodyDef.gravityScale = 0;
 	body = Physics::world->CreateBody(&bodyDef);
 
 	b2FixtureDef fixtureDef{};
@@ -65,8 +64,6 @@ void Mantis::Update(float deltaTime) {
 		flipped = !flipped;
 		mantisClock.restart();
 	}
-
-	//std::cout << mantisClock.getElapsedTime().asSeconds() << std::endl;
 
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);

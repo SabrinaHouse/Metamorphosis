@@ -37,28 +37,22 @@ void Wasp::Update(float deltaTime) {
 
 	if (horizontal) {
 		if (TopOrLeft) {
-			//std::cout << "West" << std::endl;
 			velocity.x += movementSpeed;
 		}
 		else {
-			//std::cout << "East" << std::endl;
 			velocity.x -= movementSpeed;
 		}
 	}
 	else {
 		if (TopOrLeft) {
-			//std::cout << "North" << std::endl;
 			velocity.y += movementSpeed;
 		}
 		else {
-			//std::cout << "South" << std::endl;
 			velocity.y -= movementSpeed;
 		}
 	}
 
 	body->SetLinearVelocity(velocity);
-
-	//std::cout << velocity.y << std::endl;
 
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
 }

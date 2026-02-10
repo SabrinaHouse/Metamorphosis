@@ -160,6 +160,7 @@ void Level1::Restart() {
 	leaves.clear();
 	mantises.clear();
 	boarders.clear();
+	caterpillar.eatenLeaves = 0;
 
 	Physics::Init();
 

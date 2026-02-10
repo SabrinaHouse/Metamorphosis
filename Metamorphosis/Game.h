@@ -15,5 +15,6 @@ public:
 	void Update(float deltaTime);
 	void Render(Renderer& renderer);
 
+	bool inMenu = false;
 	bool LevelComplete = false;
 };
