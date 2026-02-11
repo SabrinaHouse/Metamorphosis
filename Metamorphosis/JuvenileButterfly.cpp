@@ -64,7 +64,8 @@ void JuvenileButterfly::Update(float deltaTime) {
 		velocity.x = 80;
 	}
 
-	//jump
+	//Jump
+	//player may only jump once every half second
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) && jumpClock.getElapsedTime().asSeconds() >= 0.5f 
 		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up) && jumpClock.getElapsedTime().asSeconds() >= 0.5f 
 		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space) && jumpClock.getElapsedTime().asSeconds() >= 0.5f)

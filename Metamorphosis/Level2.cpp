@@ -29,8 +29,6 @@ Sets up the layout of the branches and twigs.
 
 std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
 
-//::vector<int> layout = { 2 , 2 , 2 , 2, 5 };
-
 int rightEdge;
 int leftEdge;
 
@@ -184,5 +182,6 @@ void Level2::Render(Renderer& renderer) {
 		}
 	}
 
+	//draw hitboxes if enabled
 	Physics::DebugDraw(renderer);
 }

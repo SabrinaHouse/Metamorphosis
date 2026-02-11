@@ -10,6 +10,7 @@ void Wasp::Begin() {
 	fixtureData->type = FixtureDataType::Wasp;
 	fixtureData->listener = this;
 
+
 	//box 2d body for collisions
 	b2BodyDef bodyDef{};
 	bodyDef.type = b2_dynamicBody;
@@ -27,6 +28,25 @@ void Wasp::Begin() {
 	fixtureDef.isSensor = true;
 	fixtureDef.userData = fixtureData;
 	body->CreateFixture(&fixtureDef);
+
+	//turn the sprite to face the correct direction
+	if (horizontal) {
+		if (TopOrLeft) {
+			angle = sf::degrees(90); //GOING EAST
+		}
+		else {
+			angle = sf::degrees(270); //GOING WEST
+		}
+	}
+	else {
+		if (TopOrLeft) {
+			angle = sf::degrees(180); //GOING SOUTH
+		}
+		else {
+			angle = sf::degrees(0); //GOING NORTH
+
+		}
+	}
 
 }
 
@@ -50,6 +70,7 @@ void Wasp::Update(float deltaTime) {
 		}
 		else {
 			velocity.y -= movementSpeed; //GOING NORTH
+
 		}
 	}
 
@@ -58,7 +79,7 @@ void Wasp::Update(float deltaTime) {
 }
 
 void Wasp::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Wasp.png"], position, sf::Vector2f(10.0, 10.0f));
+	renderer.Draw(Resources::textures["Wasp.png"], position, sf::Vector2f(10.0, 10.0f), angle);
 }
 
 void Wasp::OnBeginContact(b2Fixture* other) {

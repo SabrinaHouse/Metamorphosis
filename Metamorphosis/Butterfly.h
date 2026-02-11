@@ -13,6 +13,7 @@ public:
 	b2Vec2 bodyPosition = { position.x, position.y };
 	int location = 3; //default position is North
 	float32 angle;
+	sf::Angle spriteAngle;
 
 private:
 	b2Body* body{};

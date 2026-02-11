@@ -31,6 +31,8 @@ public:
 
 	int movementSpeed = 60;
 
+	sf::Angle angle;
+
 private:
 	b2Body* body{};
 };

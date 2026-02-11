@@ -29,32 +29,38 @@ void Butterfly::Begin() {
 	fixtureDef.isSensor = true;
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
+
 }
 
 void Butterfly::Update(float deltaTime) {
 	//Butterfly moves between 4 places
+	//the orientation of the sprite and hit box changes based on location
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right)) //EAST
 	{
 		location = 1;
 		angle = 0.5f;
+		spriteAngle = sf::degrees(90);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left)) //WEST
 	{
 		location = 2;
 		angle = 0.5f;
+		spriteAngle = sf::degrees(270);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up)) //NORTH
 	{
 		location = 3;
 		angle = 0;
+		spriteAngle = sf::degrees(0);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down)) //SOUTH
 	{
 		location = 4;
 		angle = 0;
+		spriteAngle = sf::degrees(180);
 	}
 
 	bodyPosition = { position.x, position.y };
@@ -63,6 +69,6 @@ void Butterfly::Update(float deltaTime) {
 }
 
 void Butterfly::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(20.0, 15.0f));
+	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(20.0, 15.0f), spriteAngle);
 
 }

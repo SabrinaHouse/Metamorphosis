@@ -145,13 +145,13 @@ void Level4::Update(float deltaTime) {
 	for (auto& wasp : wasps) {
 		wasp->Update(deltaTime);
 
+		//delete wasps marked as hit
 		if (wasp->hitButterfly){
 			DeleteWasp(wasp);
 			//count how many wasps have passed
 			despawnedWasps++;
 		}else if (wasp->hitEggs) {
 			Restart();
-			DeleteWasp(wasp);
 		}
 
 	}
@@ -173,10 +173,9 @@ void Level4::Render(Renderer& renderer) {
 
 	//add a boarder to make the viewable space a square
 	renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(-camera->getViewSize().x / 2, 0), sf::Vector2f(150, camera->getViewSize().y));
-
 	renderer.Draw(Resources::textures["Boarder.png"], sf::Vector2f(camera->getViewSize().x / 2, 0), sf::Vector2f(150, camera->getViewSize().y));
 
-
+	//draw hitboxes
 	Physics::DebugDraw(renderer);
 }
 

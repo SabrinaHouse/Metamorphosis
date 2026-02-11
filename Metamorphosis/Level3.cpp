@@ -26,7 +26,6 @@ MAP KEY:
 */
 
 std::vector<int> map = { 0 , 1 , 2, 1 , 0 , 0, 1, 2, 2, 0, 1, 3};
-//std::vector<int> map = { 0 , 1 , 1, 3 };
 
 float bottomEdge;
 float topEdge;
@@ -34,6 +33,7 @@ float topEdge;
 void Level3::Restart() {
 	stageComplete = false;
 
+	//find the edges of the screen relative to the camera
 	bottomEdge = (camera->getViewSize().y / 2);
 	topEdge =  -(camera->getViewSize().y / 2);
 
@@ -170,5 +170,6 @@ void Level3::Render(Renderer& renderer) {
 
 	}
 
+	//draw hitboxes if enabled
 	Physics::DebugDraw(renderer);
 }

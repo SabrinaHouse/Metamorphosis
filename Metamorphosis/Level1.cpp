@@ -35,19 +35,6 @@ MAP KEY
 7 = corner boarder
 */
 
-/*
-* std::vector<std::vector<int>> 
-map = {
-	{7, 5, 5, 5, 5, 5, 7},
-	{6, 2, 0, 3, 0, 2, 6},
-	{6, 0, 0, 0, 0, 0, 6},
-	{6, 0, 0, 1, 0, 0, 6},
-	{6, 0, 0, 0, 4, 0, 6},
-	{6, 2, 0, 3, 0, 2, 6},
-	{7, 5, 5, 5, 5, 5, 7}
-};
-*/
-
 std::vector<std::vector<int>>
 map = {
 	{7, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 8},
@@ -225,59 +212,17 @@ void Level1::Render(Renderer& renderer) {
 		boarder->Draw(renderer);
 	}
 
+	//draw hitboxes if enabled
 	Physics::DebugDraw(renderer);
 
+	//win once player has eaten 10 leaves
 	if (caterpillar.eatenLeaves >= 10) {
 		stageComplete = true;
 	}
 
 	//draw the progress bar corresponding to the amount of leaves eaten
-	switch (caterpillar.eatenLeaves) {
-	case 0:
-		renderer.Draw(Resources::textures["ProgressBar0.png"], 
-			{caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f)}, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 1:
-		renderer.Draw(Resources::textures["ProgressBar1.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 2:
-		renderer.Draw(Resources::textures["ProgressBar2.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 3:
-		renderer.Draw(Resources::textures["ProgressBar3.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 4:
-		renderer.Draw(Resources::textures["ProgressBar4.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 5:
-		renderer.Draw(Resources::textures["ProgressBar5.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 6:
-		renderer.Draw(Resources::textures["ProgressBar6.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 7:
-		renderer.Draw(Resources::textures["ProgressBar7.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 8:
-		renderer.Draw(Resources::textures["ProgressBar8.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 9:
-		renderer.Draw(Resources::textures["ProgressBar9.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	case 10:
-		renderer.Draw(Resources::textures["ProgressBar10.png"],
-			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
-		break;
-	}
+	renderer.Draw(Resources::textures["ProgressBar" + std::to_string(caterpillar.eatenLeaves) + ".png"],
+		{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
 }
 
 void DeleteLeaf(Leaf* leaf) {
