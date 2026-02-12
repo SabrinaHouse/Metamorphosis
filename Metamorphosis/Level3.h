@@ -19,5 +19,6 @@ public:
 	Camera* camera;
 
 	bool stageComplete = false;
+	bool playerDied = false;
 };
 

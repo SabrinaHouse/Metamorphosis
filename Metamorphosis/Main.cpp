@@ -61,15 +61,24 @@ int main()
                     else {
                         game.inMenu = false;
                     }
-
-                    
                 }
 
-                if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape) && CurrentLevel() != 0) {
+                //return to previous screen if you are in level select
+                if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape) && (CurrentLevel() != 0 && game.playerDead && menu.inLevelSelect)) {
+                    menu.DeathScreen(camera, window);
+                }else  if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape) && (CurrentLevel() != 0 && menu.inLevelSelect)) {
+                    menu.PauseScreen(camera, window);
+                }
+                else if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape) && CurrentLevel() ){
                     //pause or unpause the game
                     game.inMenu = !game.inMenu;
                     isPaused = !isPaused;
                     menu.PauseScreen(camera, window);
+                }
+
+                //return to main menu
+                if ((event->is<sf::Event::KeyReleased>() && keyEvent->code == sf::Keyboard::Key::Escape) && CurrentLevel() == 0 && menu.inLevelSelect) {
+                    menu.MainMenu(camera, window);
                 }
             }
 
@@ -123,6 +132,12 @@ int main()
                             if (isPaused) {
                                 isPaused = false;
                             }
+                            else if (game.inDeathScreen) {
+                                SelectLevel(CurrentLevel());
+                                game.playerDead = false;
+                                game.inDeathScreen = false;
+                                game.Begin(*window);
+                            }
                             //start the game
                             else {
                                 game.LevelComplete = true;
@@ -136,6 +151,7 @@ int main()
                         case 3:
                             //level select
                             menu.LevelSelectScreen(camera, window);
+                            game.inDeathScreen = false;
                             break;
                         }
                     }
@@ -146,6 +162,11 @@ int main()
         if (game.LevelComplete) {
             ChangeLevels();
             game.Begin(*window);
+        }
+
+        if (game.inDeathScreen) {
+            menu.DeathScreen(camera, window);
+            game.inMenu = true;
         }
 
        window->setView(camera.getView(window->getSize()));

@@ -30,6 +30,10 @@ void Butterfly::Begin() {
 	fixtureDef.shape = &polygonShape;
 	body->CreateFixture(&fixtureDef);
 
+	//facing up
+	angle = 0;
+	spriteAngle = sf::degrees(0);
+
 }
 
 void Butterfly::Update(float deltaTime) {

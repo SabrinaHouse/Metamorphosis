@@ -32,6 +32,8 @@ float topEdge;
 
 void Level3::Restart() {
 	stageComplete = false;
+	playerDied = false;
+
 
 	//find the edges of the screen relative to the camera
 	bottomEdge = (camera->getViewSize().y / 2);
@@ -103,10 +105,10 @@ void Level3::Update(float deltaTime) {
 
 	//playerr dies if they hit a bush or vine OR if they go off screen
 	if (butterfly.collided) {
-		Restart();
+		playerDied = true;
 	}
 	if (butterfly.position.y > bottomEdge || butterfly.position.y < topEdge) {
-		Restart();
+		playerDied = true;
 	}
 	//player wins when they land on flower
 	if (butterfly.onFlower)

@@ -72,6 +72,11 @@ void Game::Update(float deltaTime)
 		level4.Update(deltaTime);
 		break;
 	}
+
+	if (level1.playerDied || level2.playerDied || level3.playerDied || level4.playerDied) {
+		playerDead = true;
+		inDeathScreen = true;
+	}
 }
 
 void Game::Render(Renderer& renderer)

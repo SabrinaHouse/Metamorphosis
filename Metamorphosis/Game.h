@@ -17,4 +17,8 @@ public:
 
 	bool inMenu = false;
 	bool LevelComplete = false;
+	bool inDeathScreen = false;
+
+	bool restartLevel = false;
+	bool playerDead = false;
 };

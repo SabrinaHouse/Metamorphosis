@@ -25,5 +25,5 @@ void Ground::Begin() {
 }
 
 void Ground::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Ground.png"], position, sf::Vector2f(500, 500));
+	renderer.Draw(Resources::textures["Ground.png"], { position.x , position.y + 260 }, sf::Vector2f(500, 500));
 }

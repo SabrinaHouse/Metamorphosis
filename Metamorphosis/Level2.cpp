@@ -34,6 +34,7 @@ int leftEdge;
 
 void Level2::Restart() {
 	stageComplete = false;
+	playerDied = false;
 
 	Physics::Init(); 
 
@@ -41,6 +42,10 @@ void Level2::Restart() {
 	chrysalis.hitBranch = false;
 	chrysalis.hitGround = false;
 	chrysalis.Begin();
+
+	//place the branches and boarder 100px away from the player on either side
+	leftEdge = (chrysalis.position.x - 100);
+	rightEdge = (chrysalis.position.x + 100);
 
 	//make the first boarders
 	boarder.position.x = leftEdge - 20;
@@ -98,10 +103,6 @@ void Level2::Restart() {
 void Level2::Begin(const sf::Window& window) {
 	camera->position = sf::Vector2f(0, 0);
 
-	//place the branches and boarder 100px away from the player on either side
-	leftEdge = (chrysalis.position.x - 100) ;
-	rightEdge = (chrysalis.position.x + 100) ;
-
 	Restart();
 }
 
@@ -111,7 +112,7 @@ void Level2::Update(float deltaTime) {
 	camera->position = chrysalis.position;
 
 	if (chrysalis.hitBranch) {
-		Restart();
+		playerDied = true;
 	}
 	if (chrysalis.hitGround) {
 		stageComplete = true;

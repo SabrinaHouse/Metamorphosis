@@ -44,6 +44,9 @@ std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 3, 1, 0, 2, 3, 1, 2, 3, 3, 1,
 void Level4::Restart() {
 	Physics::Init();
 
+	playerDied = false;
+	stageComplete = false;
+
 	spawnedWasps = 0;
 	despawnedWasps = 0;
 	waspTime = 2;
@@ -151,7 +154,7 @@ void Level4::Update(float deltaTime) {
 			//count how many wasps have passed
 			despawnedWasps++;
 		}else if (wasp->hitEggs) {
-			Restart();
+			playerDied = true;
 		}
 
 	}

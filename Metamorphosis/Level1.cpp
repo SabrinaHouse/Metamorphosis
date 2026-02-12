@@ -143,6 +143,7 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 
 void Level1::Restart() {
 	stageComplete = false;
+	playerDied = false;
 
 	leaves.clear();
 	mantises.clear();
@@ -189,7 +190,7 @@ void Level1::Update(float deltaTime) {
 
 	if (caterpillar.hitMantis == true) {
 		//ensure mantises and leaves dont stack between deaths
-		Restart();
+		playerDied = true;
 	}
 
 	camera->position = caterpillar.position;
