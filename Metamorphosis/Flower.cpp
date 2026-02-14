@@ -25,6 +25,6 @@ void Flower::Begin() {
 }
 
 void Flower::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Flower.png"], position, sf::Vector2f(150, 200));
+	renderer.Draw(Resources::textures["Daisies.png"], { position.x + 40, position.y - 40 }, sf::Vector2f(200, 150));
 
 }

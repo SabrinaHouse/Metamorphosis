@@ -2,7 +2,7 @@
 #include <iostream>
 
 int currentLevel = 0;
-int maxLevel = 6;
+int maxLevel = 7;
 
 void ChangeLevels() {
 	if (currentLevel + 1 < maxLevel) {

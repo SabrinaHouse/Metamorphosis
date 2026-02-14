@@ -39,7 +39,7 @@ WASP ORDER KEY:
 3 - Right
 */
 
-std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 3, 1, 0, 2, 3, 1, 2, 3, 3, 1, 2, 0, 2, 3, 0, 0, 0, 2, 2, 1, 0, 1, 0, 1, 0, 1, 1};
+std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 1, 0, 2, 3, 1, 2, 3, 3, 1, 2, 0, 2, 3, 0, 0, 0, 1, 0, 1, 0, 1, 0, 2, 1, 3, 0};
 
 void Level4::Restart() {
 	Physics::Init();

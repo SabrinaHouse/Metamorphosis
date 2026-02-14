@@ -7,6 +7,17 @@
 sf::Event* event;
 
 void JuvenileButterfly::Begin() {
+
+	flapAnimation = Animation(0.8f,
+		{
+			AnimFrame(0.7, Resources::textures["ButterflyAnim1.png"]),
+			AnimFrame(0.5, Resources::textures["ButterflyAnim2.png"]),
+			AnimFrame(0.4, Resources::textures["ButterflyAnim3.png"]),
+			AnimFrame(0.3, Resources::textures["ButterflyAnim4.png"]),
+			AnimFrame(0.1, Resources::textures["ButterflyAnim3.png"]),
+			AnimFrame(0.0, Resources::textures["ButterflyAnim2.png"]),
+		});
+
 	//tagging with the correct listeners
 	FixtureData* fixtureData = new FixtureData();
 	fixtureData->listener = this;
@@ -42,6 +53,8 @@ void JuvenileButterfly::Begin() {
 sf::Clock jumpClock;
 
 void JuvenileButterfly::Update(float deltaTime) {
+	flapAnimation.Update(deltaTime);
+
 	b2Vec2 velocity = body->GetLinearVelocity();
 
 	//velocity increases as the player gets further
@@ -76,10 +89,12 @@ void JuvenileButterfly::Update(float deltaTime) {
 
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
+
+	textureToDraw = flapAnimation.GetTexture();
 }
 
 void JuvenileButterfly::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(20.0, 15.0f));
+	renderer.Draw(textureToDraw, position, sf::Vector2f(30.0, 30.0f));
 }
 
 void JuvenileButterfly::OnBeginContact(b2Fixture* other) {

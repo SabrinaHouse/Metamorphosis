@@ -138,6 +138,11 @@ int main()
                                 game.inDeathScreen = false;
                                 game.Begin(*window);
                             }
+                            else if (game.gameComplete) {
+                                SelectLevel(1);
+                                game.gameComplete = false;
+                                game.Begin(*window);
+                            }
                             //start the game
                             else {
                                 game.LevelComplete = true;
@@ -164,9 +169,16 @@ int main()
             game.Begin(*window);
         }
 
-        if (game.inDeathScreen) {
+        if (game.inDeathScreen && game.enterDeathScreen) {
             menu.DeathScreen(camera, window);
             game.inMenu = true;
+            game.enterDeathScreen = false;
+        }
+
+        if (game.gameComplete && game.enterEndScreen) {
+            menu.FinalScreen(camera, window);
+            game.inMenu = true;
+            game.enterEndScreen = false;
         }
 
        window->setView(camera.getView(window->getSize()));

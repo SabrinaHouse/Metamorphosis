@@ -36,6 +36,10 @@ void Game::Begin(const sf::Window& window)
 		level4.Begin(window);
 		break;
 	case 5:
+		gameComplete = true;
+		enterEndScreen = true;
+		break;
+	case 6:
 		break;
 	}
 
@@ -71,11 +75,14 @@ void Game::Update(float deltaTime)
 		}
 		level4.Update(deltaTime);
 		break;
+	case 5:
+		break;
 	}
 
 	if (level1.playerDied || level2.playerDied || level3.playerDied || level4.playerDied) {
 		playerDead = true;
 		inDeathScreen = true;
+		enterDeathScreen = true;
 	}
 }
 
@@ -97,6 +104,8 @@ void Game::Render(Renderer& renderer)
 		level4.Render(renderer);
 		break;
 	case 5:
+		break;
+	case 6: 
 		break;
 	}
 }

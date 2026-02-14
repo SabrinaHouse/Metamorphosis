@@ -25,6 +25,6 @@ void Bush::Begin() {
 }
 
 void Bush::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Bush.png"], position, sf::Vector2f(120, 150));
+	renderer.Draw(Resources::textures["Bush.png"], { position.x , position.y + 25 }, sf::Vector2f(100, 170));
 
 }

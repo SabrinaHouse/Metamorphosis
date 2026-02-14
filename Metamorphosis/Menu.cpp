@@ -60,6 +60,14 @@ void Menu::PauseScreen(Camera camera, sf::RenderWindow* window) {
 
 	inLevelSelect = false;
 
+	//reset what is selected when you enter the screen
+	menu[0]->setFillColor(sf::Color::White);
+	menu[2]->setFillColor(sf::Color::White);
+	menu[3]->setFillColor(sf::Color::White);
+
+	selectedItemIndex = 1;
+	menu[1]->setFillColor(sf::Color::Blue);
+
 	//reset strings to proper text and size
 	menu[0]->setString("Paused");
 	menu[0]->setCharacterSize(60);
@@ -85,6 +93,14 @@ void Menu::DeathScreen(Camera camera, sf::RenderWindow* window) {
 
 	inLevelSelect = false;
 
+	//reset what is selected when you enter the screen
+	menu[0]->setFillColor(sf::Color::White);
+	menu[2]->setFillColor(sf::Color::White);
+	menu[3]->setFillColor(sf::Color::White);
+
+	selectedItemIndex = 1;
+	menu[1]->setFillColor(sf::Color::Blue);
+
 	//reset strings to proper text and size
 	menu[0]->setString("You Died!");
 	menu[0]->setCharacterSize(60);
@@ -109,6 +125,14 @@ void Menu::LevelSelectScreen(Camera camera, sf::RenderWindow* window) {
 
 	inLevelSelect = true;
 
+	//reset what is selected when you enter the screen
+	menu[0]->setFillColor(sf::Color::White);
+	menu[2]->setFillColor(sf::Color::White);
+	menu[3]->setFillColor(sf::Color::White);
+
+	selectedItemIndex = 1;
+	menu[1]->setFillColor(sf::Color::Blue);
+
 	//reset strings to proper text and size
 	menu[0]->setString("Caterpillar");
 	menu[0]->setCharacterSize(36);
@@ -132,9 +156,14 @@ void Menu::FinalScreen(Camera camera, sf::RenderWindow* window) {
 
 	inLevelSelect = false;
 
+	//reset what is selected when you enter the screen
+	menu[selectedItemIndex]->setFillColor(sf::Color::White);
+	selectedItemIndex = 1;
+	menu[selectedItemIndex]->setFillColor(sf::Color::Blue);
+
 	//reset strings to proper text and size
 	menu[0]->setString("Metamorphosis");
-	menu[0]->setCharacterSize(36);
+	menu[0]->setCharacterSize(60);
 
 	menu[1]->setString("Play Again");
 	menu[2]->setString("Quit");

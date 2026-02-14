@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Physics.h"
+#include "Animation.h"
 #pragma once
 
 class JuvenileButterfly
@@ -20,6 +21,9 @@ public:
 	bool onFlower = false;
 
 private:
+	sf::Texture textureToDraw{};
+	Animation flapAnimation;
+
 	b2Body* body{};
 	FixtureData fixtureData{};
 	float jumpPower = 60.0f;

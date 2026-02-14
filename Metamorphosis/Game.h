@@ -17,7 +17,10 @@ public:
 
 	bool inMenu = false;
 	bool LevelComplete = false;
+	bool gameComplete = false;
+	bool enterEndScreen = false;
 	bool inDeathScreen = false;
+	bool enterDeathScreen = false;
 
 	bool restartLevel = false;
 	bool playerDead = false;
