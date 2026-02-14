@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Physics.h"
 #include "Resources.h"
+#include "Animation.h"
 
 class Wasp
 	: public ContactListener
@@ -34,6 +35,9 @@ public:
 	sf::Angle angle;
 
 private:
+	sf::Texture textureToDraw{};
+	Animation waspAnimation;
+
 	b2Body* body{};
 };
 

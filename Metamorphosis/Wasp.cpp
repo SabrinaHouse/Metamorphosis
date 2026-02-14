@@ -6,6 +6,14 @@ Wasp::~Wasp() {
 }
 
 void Wasp::Begin() {
+	waspAnimation = Animation(0.2f,
+		{
+			AnimFrame(0.15, Resources::textures["WaspAnim1.png"]),
+			AnimFrame(0.1, Resources::textures["WaspAnim2.png"]),
+			AnimFrame(0.05, Resources::textures["WaspAnim3.png"]),
+			AnimFrame(0.0, Resources::textures["WaspAnim2.png"]),
+		});
+
 	FixtureData* fixtureData = new FixtureData();
 	fixtureData->type = FixtureDataType::Wasp;
 	fixtureData->listener = this;
@@ -47,10 +55,11 @@ void Wasp::Begin() {
 
 		}
 	}
-
 }
 
 void Wasp::Update(float deltaTime) {
+	waspAnimation.Update(deltaTime);
+
 	b2Vec2 velocity = body->GetLinearVelocity();
 	velocity.x = 0;
 	velocity.y = 0;
@@ -76,10 +85,12 @@ void Wasp::Update(float deltaTime) {
 
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
+
+	textureToDraw = waspAnimation.GetTexture();
 }
 
 void Wasp::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Wasp.png"], position, sf::Vector2f(10.0, 10.0f), angle);
+	renderer.Draw(textureToDraw, position, sf::Vector2f(30.0, 30.0f), angle);
 }
 
 void Wasp::OnBeginContact(b2Fixture* other) {

@@ -73,6 +73,6 @@ void Butterfly::Update(float deltaTime) {
 }
 
 void Butterfly::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(20.0, 15.0f), spriteAngle);
+	renderer.Draw(Resources::textures["Butterfly.png"], position, sf::Vector2f(30.0, 30.0f), spriteAngle);
 
 }

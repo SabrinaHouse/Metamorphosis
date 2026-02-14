@@ -167,8 +167,10 @@ void Level4::Update(float deltaTime) {
 }
 
 void Level4::Render(Renderer& renderer) {
+	renderer.Draw(Resources::textures["BackGround.png"], eggs.position, sf::Vector2f(300, 225));
+
 	butterfly.Draw(renderer);
-	eggs.Draw(renderer);
+	//eggs.Draw(renderer);
 
 	for (auto& wasp : wasps) {
 		wasp->Draw(renderer);
