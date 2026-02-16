@@ -21,6 +21,8 @@ std::vector<Leaf*> leaves;
 std::vector<Mantis*> mantises;
 std::vector<Boarder*> boarders;
 
+sf::Clock cutsceneClock_1;
+
 int coinFlip;
 
 /*
@@ -142,6 +144,8 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 }
 
 void Level1::Restart() {
+	cutsceneClock_1.restart();
+
 	stageComplete = false;
 	playerDied = false;
 
@@ -173,57 +177,80 @@ void Level1::Begin(const sf::Window& window) {
 }
 
 void Level1::Update(float deltaTime) {
-	Physics::Update(deltaTime);
+	//do not update game if in a cutscene
+	if (cutsceneClock_1.getElapsedTime().asSeconds() > 6) {
+		Physics::Update(deltaTime);
 
-	caterpillar.Update(deltaTime);
+		caterpillar.Update(deltaTime);
 
-	for (auto& leaf : leaves) {
-		if (leaf->eaten == true) {
-			caterpillar.eatenLeaves++;
-			DeleteLeaf(leaf);
+		for (auto& leaf : leaves) {
+			if (leaf->eaten == true) {
+				caterpillar.eatenLeaves = caterpillar.eatenLeaves + 5;
+				DeleteLeaf(leaf);
+			}
 		}
-	}
 
-	for (auto& mantis : mantises) {
-		mantis->Update(deltaTime);
-	}
+		for (auto& mantis : mantises) {
+			mantis->Update(deltaTime);
+		}
 
-	if (caterpillar.hitMantis == true) {
-		//ensure mantises and leaves dont stack between deaths
-		playerDied = true;
+		if (caterpillar.hitMantis == true) {
+			//ensure mantises and leaves dont stack between deaths
+			playerDied = true;
+		}
+
+		//enter cutscene once player has eaten 10 leaves
+		if (caterpillar.eatenLeaves >= 10) {
+			cutsceneClock_1.restart();
+		}
+
 	}
 
 	camera->position = caterpillar.position;
+
 }
 
 void Level1::Render(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Dirt.png"], caterpillar.position , sf::Vector2f(camera->getViewSize().x * 1.5, camera->getViewSize().y * 1.5));
-
-	caterpillar.Draw(renderer);
-
-	for (auto& leaf : leaves) {
-		leaf->Draw(renderer);
+	//draw cutscenes
+	if (cutsceneClock_1.getElapsedTime().asSeconds() < 3 && caterpillar.eatenLeaves < 10) {
+		renderer.Draw(Resources::textures["Lvl1_Begin_pt1.png"], caterpillar.position, sf::Vector2f(camera->getViewSize().x, camera->getViewSize().y));
 	}
-
-	for (auto& mantis : mantises) {
-		mantis->Draw(renderer);
+	else if (cutsceneClock_1.getElapsedTime().asSeconds() < 6 && caterpillar.eatenLeaves < 10) {
+		renderer.Draw(Resources::textures["Lvl1_Begin_pt2.png"], caterpillar.position, sf::Vector2f(camera->getViewSize().x, camera->getViewSize().y));
 	}
-
-	for (auto& boarder : boarders) {
-		boarder->Draw(renderer);
+	else if (caterpillar.eatenLeaves >= 10 && cutsceneClock_1.getElapsedTime().asSeconds() <= 3) {
+		renderer.Draw(Resources::textures["Lvl1_End.png"], caterpillar.position, sf::Vector2f(camera->getViewSize().x, camera->getViewSize().y));
 	}
-
-	//draw hitboxes if enabled
-	Physics::DebugDraw(renderer);
-
-	//win once player has eaten 10 leaves
-	if (caterpillar.eatenLeaves >= 10) {
+	else if (caterpillar.eatenLeaves >= 10 && cutsceneClock_1.getElapsedTime().asSeconds() > 3) {
+		//win once cutscene has played
 		stageComplete = true;
+		cutsceneClock_1.stop();
 	}
+	//draw game if not in cutscene
+	else {
+		renderer.Draw(Resources::textures["Dirt.png"], caterpillar.position, sf::Vector2f(camera->getViewSize().x * 1.5, camera->getViewSize().y * 1.5));
 
-	//draw the progress bar corresponding to the amount of leaves eaten
-	renderer.Draw(Resources::textures["ProgressBar" + std::to_string(caterpillar.eatenLeaves) + ".png"],
-		{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
+		caterpillar.Draw(renderer);
+
+		for (auto& leaf : leaves) {
+			leaf->Draw(renderer);
+		}
+
+		for (auto& mantis : mantises) {
+			mantis->Draw(renderer);
+		}
+
+		for (auto& boarder : boarders) {
+			boarder->Draw(renderer);
+		}
+
+		//draw hitboxes if enabled
+		Physics::DebugDraw(renderer);
+
+		//draw the progress bar corresponding to the amount of leaves eaten
+		renderer.Draw(Resources::textures["ProgressBar" + std::to_string(caterpillar.eatenLeaves) + ".png"],
+			{ caterpillar.position.x, (caterpillar.position.y - camera->getViewSize().y / 2.2f) }, sf::Vector2f(camera->getViewSize().x * .75, 15));
+	}
 }
 
 void DeleteLeaf(Leaf* leaf) {

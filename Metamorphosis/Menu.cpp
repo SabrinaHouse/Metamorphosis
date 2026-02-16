@@ -13,8 +13,6 @@ void Menu::MainMenu(Camera camera, sf::RenderWindow* window) {
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		menu[i] = new sf::Text(font);
 		menu[i]->setFillColor(sf::Color::White);
-		menu[i]->setOutlineColor(sf::Color::Black);
-		menu[i]->setOutlineThickness(1);
 		menu[i]->setScale({ .75f, .75f });
 		menu[i]->setCharacterSize(36);
 	}

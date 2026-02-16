@@ -120,6 +120,7 @@ int main()
                             break;
                         }
                         game.Begin(*window);
+                        game.inDeathScreen = false;
                         game.inMenu = false;
                     }
                     else {
@@ -135,6 +136,7 @@ int main()
                             else if (game.inDeathScreen) {
                                 SelectLevel(CurrentLevel());
                                 game.playerDead = false;
+                                game.enterDeathScreen = false;
                                 game.inDeathScreen = false;
                                 game.Begin(*window);
                             }

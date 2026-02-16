@@ -79,7 +79,9 @@ void Game::Update(float deltaTime)
 		break;
 	}
 
-	if (level1.playerDied || level2.playerDied || level3.playerDied || level4.playerDied) {
+	//only enter death screen if you are dead in the CURRENT level
+	if ((CurrentLevel() == 1 && level1.playerDied )|| (CurrentLevel() == 2 && level2.playerDied) 
+		|| (CurrentLevel() == 3 && level3.playerDied) || (CurrentLevel() == 4 && level4.playerDied)) {
 		playerDead = true;
 		inDeathScreen = true;
 		enterDeathScreen = true;
