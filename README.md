@@ -43,3 +43,8 @@ Players must block incoming wasps from attacking their eggs.
 Wasps progressively get faster and more frequent.
 
 Uses WASD or arrow keys for movement
+
+## Credits
+Smallburg font made by GGBotNet (https://ggbot.itch.io/smallburg-font).
+
+All other assets are original.
