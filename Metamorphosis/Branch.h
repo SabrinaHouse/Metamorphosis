@@ -12,6 +12,6 @@ public:
 	bool leftSide = false;
 
 private:
-	b2Body* body;
+	b2Body* body{};
 };
 

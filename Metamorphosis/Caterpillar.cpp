@@ -10,7 +10,6 @@ sf::Angle angle;
 float32 bodyAngle;
 
 void Caterpillar::Begin() {
-
 	runAnimation = Animation(0.6f,
 		{
 			AnimFrame(0.3, Resources::textures["Caterpillar1.png"]),
@@ -77,8 +76,8 @@ void Caterpillar::Update(float deltaTime) {
 
 	body->SetLinearVelocity(velocity);
 
-	//cahnge which dirrection the body is facing based on what direction you are going
-	//play animation if you are moving
+	//change which direction the body is facing based on what direction the player is going
+	//play animation only if player is moving
 	if (std::abs(velocity.y) > std::abs(velocity.x)) {
 		if (velocity.y < 0.02f) {
 			textureToDraw = runAnimation.GetTexture();
@@ -90,7 +89,6 @@ void Caterpillar::Update(float deltaTime) {
 			
 		}
 		bodyAngle = 0.5 * b2_pi;
-
 	}
 	else if (std::abs(velocity.y) < std::abs(velocity.x) || (std::abs(velocity.y) == std::abs(velocity.x) && std::abs(velocity.y) !=0)) {
 		if (velocity.x > 0.02f) {
@@ -102,8 +100,9 @@ void Caterpillar::Update(float deltaTime) {
 			angle = sf::degrees(270);
 		}
 		bodyAngle = 0 * b2_pi;
-
-	} else {
+	} 
+	//if not moving, just draw the static image
+	else {
 		textureToDraw = Resources::textures["Caterpillar1.png"];
 	}
 
@@ -115,7 +114,6 @@ void Caterpillar::Update(float deltaTime) {
 
 void Caterpillar::Draw(Renderer& renderer) {
 	renderer.Draw(textureToDraw, position, sf::Vector2f(20, 35), angle);
-
 }
 
 void Caterpillar::OnBeginContact(b2Fixture* other) {
@@ -131,4 +129,3 @@ void Caterpillar::OnBeginContact(b2Fixture* other) {
 
 void Caterpillar::OnEndContact(b2Fixture* other) {
 }
-	

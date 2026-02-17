@@ -93,7 +93,6 @@ struct FixtureData
 	};
 
 	// level 4 data types
-
 	union
 	{
 		Butterfly* butterfly;

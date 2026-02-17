@@ -31,11 +31,6 @@ void Leaf::Begin() {
 	eaten = false;
 }
 
-void Leaf::Update(float deltaTime) {
-
-}
-
-
 void Leaf::Draw(Renderer& renderer) {
 	renderer.Draw(Resources::textures["Leaf.png"], position, sf::Vector2f(20.0, 12.0f));
 

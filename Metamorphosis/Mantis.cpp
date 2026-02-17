@@ -77,8 +77,6 @@ void Mantis::Update(float deltaTime) {
 	body->SetLinearVelocity(velocity);
 	position = sf::Vector2f(body->GetPosition().x, body->GetPosition().y);
 	textureToDraw = runAnimation.GetTexture();
-
-
 }
 
 

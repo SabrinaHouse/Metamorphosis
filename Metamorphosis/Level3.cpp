@@ -96,7 +96,6 @@ void Level3::Restart() {
 }
 
 void Level3::Begin(const sf::Window& window) {
-	
 	Restart();
 }
 
@@ -156,7 +155,6 @@ void Level3::Render(Renderer& renderer) {
 
 		for (int i = 0; i < map.size(); i++)
 		{
-
 			//move further out each section
 			bush.position.x = (200 * i) + 150;
 			vine.position.x = (200 * i) + 150;
@@ -193,7 +191,6 @@ void Level3::Render(Renderer& renderer) {
 			}
 
 			butterfly.Draw(renderer);
-
 		}
 
 		//draw hitboxes if enabled

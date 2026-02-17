@@ -18,6 +18,5 @@ void SelectLevel(int chosenLevel) {
 }
 
 int CurrentLevel() {
-	//std::cout << currentLevel << std::endl;
 	return currentLevel;
 }

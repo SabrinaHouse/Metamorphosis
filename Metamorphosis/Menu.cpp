@@ -76,7 +76,6 @@ void Menu::PauseScreen(Camera camera, sf::RenderWindow* window) {
 
 
 	//set positions
-	
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		bounds = menu[i]->getLocalBounds();
 		menu[i]->setOrigin({ bounds.size.x / 2, bounds.size.y / 2 });
@@ -189,7 +188,6 @@ void Menu::updatePosition(Camera camera, sf::RenderWindow* window) {
 }
 
 void Menu::draw(sf::RenderWindow* window, Renderer& renderer) {
-
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++) {
 		window->draw(*menu[i]);
 	}
@@ -202,6 +200,7 @@ void Menu::moveUp() {
 		menu[selectedItemIndex]->setFillColor(sf::Color::Blue);
 	}
 }
+
 void Menu::moveDown() {
 	if (selectedItemIndex + 1 < MAX_NUMBER_OF_ITEMS) {
 		menu[selectedItemIndex]->setFillColor(sf::Color::White);

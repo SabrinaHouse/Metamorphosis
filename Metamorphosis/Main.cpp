@@ -50,6 +50,7 @@ int main()
 
             if (event->is<sf::Event::KeyReleased>())
             {
+                //skip level
                 auto keyEvent = event->getIf<sf::Event::KeyReleased>();
                 if (keyEvent->code == sf::Keyboard::Key::Backspace)
                 {
@@ -120,9 +121,11 @@ int main()
                             break;
                         }
                         game.Begin(*window);
+                        //exit the menu no matter what state you're in
                         game.inDeathScreen = false;
                         game.inMenu = false;
                         menu.inLevelSelect = false;
+                        isPaused = false;
                     }
                     else {
                         switch (menu.getPressedItem()) {
@@ -186,6 +189,7 @@ int main()
 
        window->setView(camera.getView(window->getSize()));
 
+       //only update if NOT in menu
        if (!game.inMenu) {
            game.Update(deltaTime);
 
@@ -199,8 +203,7 @@ int main()
            menu.updatePosition(camera, window);
            menu.draw(window, renderer);
        }
-       
-
+      
        window->display();
     }
 }

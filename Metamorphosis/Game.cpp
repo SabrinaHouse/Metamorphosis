@@ -11,7 +11,6 @@ Level2 level2(camera);
 Level3 level3(camera);
 Level4 level4(camera);
 
-
 void Game::Begin(const sf::Window& window)
 {
 	switch (CurrentLevel()) {
@@ -47,7 +46,6 @@ void Game::Begin(const sf::Window& window)
 
 void Game::Update(float deltaTime)
 {
-	//std::cout << currentLevel << std::endl;
 	switch (CurrentLevel()) {
 	case 0:
 		break;
@@ -79,7 +77,7 @@ void Game::Update(float deltaTime)
 		break;
 	}
 
-	//only enter death screen if you are dead in the CURRENT level
+	//only enter death screen if the player is dead in the CURRENT level
 	if ((CurrentLevel() == 1 && level1.playerDied )|| (CurrentLevel() == 2 && level2.playerDied) 
 		|| (CurrentLevel() == 3 && level3.playerDied) || (CurrentLevel() == 4 && level4.playerDied)) {
 		playerDead = true;

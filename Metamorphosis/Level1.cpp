@@ -102,6 +102,7 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 				mantis->position = sf::Vector2f(j * distance, i * distance);
 				mantises.push_back(mantis);
 				break;
+			//draw boarders
 			case 5:
 				boarder = new Boarder();
 				boarder->typeOfBoarder = 0;
@@ -209,7 +210,6 @@ void Level1::Update(float deltaTime) {
 	}
 
 	camera->position = caterpillar.position;
-
 }
 
 void Level1::Render(Renderer& renderer) {

@@ -163,6 +163,7 @@ void Physics::DebugDraw(Renderer& renderer)
 		world->SetDebugDraw(debugDraw);
 	}
 
+	//Uncomment to draw hitboxes
 	//world->DrawDebugData();
 }
 

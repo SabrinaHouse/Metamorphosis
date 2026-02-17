@@ -12,6 +12,7 @@ void Boarder::Begin() {
 	b2FixtureDef fixtureDef{};
 
 	b2PolygonShape polygonShape{};
+	//body is a square in lvl 1 and a rectangle in lvl 2
 	if (CurrentLevel() == 1) {
 		polygonShape.SetAsBox(24, 24);
 	}
@@ -26,6 +27,7 @@ void Boarder::Begin() {
 void Boarder::Draw(Renderer& renderer) {
 	//check which kind of boarder should be drawn based on the level
 	if (CurrentLevel() == 1) {
+		//change which orientation/type is used
 		switch (typeOfBoarder) {
 		case 0:
 			renderer.Draw(Resources::textures["Boarder.png"], position, sf::Vector2f(50, 50), sf::degrees(90));
