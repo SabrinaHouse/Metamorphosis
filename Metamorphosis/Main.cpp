@@ -122,6 +122,7 @@ int main()
                         game.Begin(*window);
                         game.inDeathScreen = false;
                         game.inMenu = false;
+                        menu.inLevelSelect = false;
                     }
                     else {
                         switch (menu.getPressedItem()) {

@@ -6,7 +6,7 @@
 #include "Level3.h"
 #include "Level4.h"
 
-
+//each level will use the same camera
 extern Camera camera;
 
 class Game {
@@ -15,13 +15,16 @@ public:
 	void Update(float deltaTime);
 	void Render(Renderer& renderer);
 
-	bool inMenu = false;
+	//game states
 	bool LevelComplete = false;
+	bool playerDead = false;
+
+	//Menu States
+	bool inMenu = false;
 	bool gameComplete = false;
 	bool enterEndScreen = false;
 	bool inDeathScreen = false;
 	bool enterDeathScreen = false;
 
-	bool restartLevel = false;
-	bool playerDead = false;
+	
 };

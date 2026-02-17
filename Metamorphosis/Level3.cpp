@@ -27,13 +27,15 @@ MAP KEY:
 3 = Finish
 */
 
-//std::vector<int> map = { 0 , 1 , 2, 1 , 0 , 0, 1, 2, 2, 0, 1, 3};
-std::vector<int> map = { 0 , 1 , 2, 3};
+std::vector<int> map = { 0 , 1 , 2, 1 , 0 , 0, 1, 2, 2, 0, 1, 3};
+// test map
+//std::vector<int> map = { 0 , 1 , 2, 3};
 
 float bottomEdge;
 float topEdge;
 
 void Level3::Restart() {
+	//reset all variables that change during the game
 	cutsceneClock_3.restart();
 
 	stageComplete = false;

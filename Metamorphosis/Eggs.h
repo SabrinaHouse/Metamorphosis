@@ -6,7 +6,6 @@ class Eggs
 {
 public:
 	void Begin();
-	void Draw(Renderer& renderer);
 
 	sf::Vector2f position{};
 

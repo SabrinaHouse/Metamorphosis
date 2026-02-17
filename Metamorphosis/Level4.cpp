@@ -41,10 +41,12 @@ WASP ORDER KEY:
 3 - Right
 */
 
-//std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 1, 0, 2, 3, 1, 2, 3, 3, 1, 2, 0, 2, 3, 0, 0, 0, 1, 0, 1, 0, 1, 0, 2, 1, 3, 0};
-std::vector<int> waspOrder = { 0, 2, 1, 3, 0 };
+std::vector<int> waspOrder = { 0 , 1, 2, 3, 3 , 2, 1, 0, 2, 3, 1, 2, 3, 3, 1, 2, 0, 2, 3, 0, 0, 0, 1, 0, 1, 0, 1, 0, 2, 1, 3, 0};
+//test wasp order
+//std::vector<int> waspOrder = { 0, 2, 1, 3, 0 };
 
 void Level4::Restart() {
+	//reset all variables that change during the game
 	cutsceneClock_4.restart();
 
 	Physics::Init();
@@ -75,10 +77,13 @@ void Level4::Begin(const sf::Window& window) {
 
 	stageComplete = false;
 
+	//find the edge of the screen
 	sf::View cameraView = camera->getView(window.getSize());
 
 	northEdge =  -camera->getViewSize().y / 2 ;
 	southEdge = camera->getViewSize().y / 2;
+
+	//width is still based on the y axis so the wasps spawn in a square rather than a rectangle
 	westEdge =  -camera->getViewSize().y / 2;
 	eastEdge = camera->getViewSize().y / 2;
 
@@ -193,7 +198,6 @@ void Level4::Render(Renderer& renderer) {
 		renderer.Draw(Resources::textures["BackGround.png"], eggs.position, sf::Vector2f(300, 225));
 
 		butterfly.Draw(renderer);
-		//eggs.Draw(renderer);
 
 		for (auto& wasp : wasps) {
 			wasp->Draw(renderer);

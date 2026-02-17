@@ -20,7 +20,7 @@ Boarder boarder;
 sf::Clock cutsceneClock_2;
 
 /*
-Sets up the layout of the branches and twigs.
+BRANCH KEY:
  0 = Branch left 
  1 = Branch right 
  2 = Branch both sides
@@ -29,14 +29,17 @@ Sets up the layout of the branches and twigs.
  5 = ground (finish!!)
  */
 
-//std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
-std::vector<int> layout = { 2 , 0, 1, 2, 3, 4 , 5};
+std::vector<int> layout = { 2 , 2 , 1 , 2 , 3 , 1 , 0 , 4 , 0 , 0 , 2 , 2 , 3 , 0 , 1 , 3 , 0 , 4 , 4 , 2 , 5};
+//test layout
+//std::vector<int> layout = { 2 , 0, 1, 2, 3, 4 , 5};
 
 int rightEdge;
 int leftEdge;
 
 void Level2::Restart() {
+	//reset all variables that change during the game
 	cutsceneClock_2.restart();
+
 	stageComplete = false;
 	playerDied = false;
 

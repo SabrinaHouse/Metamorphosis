@@ -11,9 +11,9 @@ public:
 	sf::Vector2f position{};
 
 	int typeOfBoarder;
+
 	/*
 	decides what type of boarder to draw (only applicable in level 1)
-
 	0 = top/bottom
 	1 = side
 	2 = corner

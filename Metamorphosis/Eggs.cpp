@@ -21,8 +21,3 @@ void Eggs::Begin() {
 	fixtureDef.userData = fixtureData;
 	body->CreateFixture(&fixtureDef);
 }
-
-void Eggs::Draw(Renderer& renderer) {
-	renderer.Draw(Resources::textures["Eggs.png"], position, sf::Vector2f(20.0, 20.0f));
-
-}

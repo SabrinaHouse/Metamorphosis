@@ -23,6 +23,7 @@ std::vector<Boarder*> boarders;
 
 sf::Clock cutsceneClock_1;
 
+//for mantis starting direction
 int coinFlip;
 
 /*
@@ -144,6 +145,7 @@ void Level1::CreateMap(std::vector<std::vector<int>> map) {
 }
 
 void Level1::Restart() {
+	//reset all variables that change during the game
 	cutsceneClock_1.restart();
 
 	stageComplete = false;
@@ -185,7 +187,7 @@ void Level1::Update(float deltaTime) {
 
 		for (auto& leaf : leaves) {
 			if (leaf->eaten == true) {
-				caterpillar.eatenLeaves = caterpillar.eatenLeaves + 5;
+				caterpillar.eatenLeaves++;
 				DeleteLeaf(leaf);
 			}
 		}
